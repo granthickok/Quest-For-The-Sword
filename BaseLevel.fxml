@@ -2,121 +2,77 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="762.0" prefWidth="1020.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SelectController">
+<AnchorPane prefHeight="675.0" prefWidth="1019.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SelectController">
    <children>
-      <TextArea editable="false" layoutX="207.0" layoutY="612.0" prefHeight="136.0" prefWidth="485.0" />
-      <GridPane alignment="CENTER" layoutX="745.0" layoutY="612.0" prefHeight="136.0" prefWidth="230.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints maxHeight="122.0" minHeight="10.0" prefHeight="86.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="96.0" minHeight="0.0" prefHeight="96.0" vgrow="SOMETIMES" />
-        </rowConstraints>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1126.0" style="-fx-background-color: black;">
          <children>
-            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="46.0" prefWidth="96.0" text="Action 1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="96.0" text="Action 2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="96.0" text="Action 3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="96.0" text="Action 4" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-         </children>
-      </GridPane>
-      <VBox layoutX="14.0" layoutY="14.0" prefHeight="99.0" prefWidth="156.0" spacing="10.0">
-         <children>
-            <Label fx:id="name_Class" prefHeight="53.0" prefWidth="200.0" text="Name" />
-            <Label text="HP:" />
-            <StackPane prefHeight="17.0" prefWidth="156.0">
+            <Pane layoutX="14.0" layoutY="24.0" prefHeight="87.0" prefWidth="123.0" style="-fx-background-color: white;">
                <children>
-                  <ProgressBar fx:id="currentHpBar" prefWidth="200.0" progress="0.0" />
-                  <Label fx:id="currentHp" alignment="CENTER" prefHeight="17.0" prefWidth="92.0" text="0/0" />
+                  <Text layoutX="21.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HP : " wrappingWidth="30.13671875" />
+                  <Text layoutX="21.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DMG : " wrappingWidth="37.13671875" />
+                  <Text layoutX="21.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EV : " wrappingWidth="23.13671875" />
+                  <Label fx:id="name_Class" alignment="CENTER" layoutX="-3.0" layoutY="14.0" prefHeight="17.0" prefWidth="123.0" text="Name" />
+                  <Label fx:id="currentHp" alignment="CENTER" layoutX="54.0" layoutY="31.0" prefHeight="17.0" prefWidth="49.0" text="\$$" />
+                  <Label fx:id="gdmg" alignment="CENTER" layoutX="54.0" layoutY="47.0" prefHeight="17.0" prefWidth="49.0" text="\$$" />
+                  <Label fx:id="gev" alignment="CENTER" layoutX="56.0" layoutY="62.0" prefHeight="17.0" prefWidth="49.0" text="\$$" />
                </children>
-            </StackPane>
-         </children>
-      </VBox>
-      <VBox layoutX="14.0" layoutY="126.0" prefHeight="99.0" prefWidth="156.0">
-         <children>
-            <Label text="Status Effects" />
-            <ListView fx:id="statusList" prefHeight="89.0" prefWidth="156.0" />
-         </children>
-      </VBox>
-      <VBox layoutX="14.0" layoutY="248.0" prefHeight="136.0" prefWidth="156.0">
-         <children>
-            <Label text="Inventory" />
-            <ListView fx:id="inventoryList" prefHeight="128.0" prefWidth="156.0" />
-         </children>
-      </VBox>
-      <VBox layoutX="14.0" layoutY="407.0" prefHeight="164.0" prefWidth="156.0">
-         <children>
-            <Label text="Enemy:" />
-            <VBox prefHeight="99.0" prefWidth="156.0" spacing="10.0">
+            </Pane>
+            <Pane layoutX="165.0" layoutY="24.0" prefHeight="540.0" prefWidth="916.0" style="-fx-background-color: white;" />
+            <Text fill="#f5efef" layoutX="14.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inventory" wrappingWidth="89.13671875" />
+            <Pane layoutX="14.0" layoutY="146.0" prefHeight="87.0" prefWidth="123.0" style="-fx-background-color: white;" />
+            <Text fill="#f5efef" layoutX="13.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status Effect" wrappingWidth="89.13671875" />
+            <Text fill="#f5efef" layoutX="14.0" layoutY="528.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enemy" wrappingWidth="89.13671875" />
+            <Pane layoutX="14.0" layoutY="540.0" prefHeight="94.0" prefWidth="123.0" style="-fx-background-color: white;">
                <children>
-                  <Label fx:id="enemyName" prefHeight="53.0" prefWidth="200.0" text="Name" />
-                  <Label text="HP:" />
-                  <StackPane prefHeight="17.0" prefWidth="156.0">
-                     <children>
-                        <ProgressBar fx:id="enemyHpBar" prefWidth="200.0" progress="0.0" />
-                        <Label fx:id="currentEnemyHp" alignment="CENTER" prefHeight="17.0" prefWidth="92.0" text="0/0" />
-                     </children>
-                  </StackPane>
+                  <Text layoutX="20.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HP : " wrappingWidth="30.13671875" />
+                  <Text layoutX="23.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EV : " wrappingWidth="23.13671875" />
+                  <Text layoutX="21.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Special:" wrappingWidth="49.13671875" />
+                  <Label alignment="CENTER" layoutX="15.0" layoutY="13.0" prefHeight="17.0" prefWidth="78.0" text="Enemy Name" />
+                  <Label alignment="CENTER" layoutX="30.0" layoutY="30.0" prefHeight="17.0" prefWidth="49.0" text="\$$" />
+                  <Label alignment="CENTER" layoutX="30.0" layoutY="47.0" prefHeight="17.0" prefWidth="49.0" text="\$$" />
+                  <Label alignment="CENTER" layoutX="45.0" layoutY="64.0" prefHeight="17.0" prefWidth="49.0" text="\$$" />
                </children>
-            </VBox>
-            <ListView fx:id="enemyStats" prefHeight="200.0" prefWidth="200.0" />
+            </Pane>
+            <Text fill="#f5efef" layoutX="165.0" layoutY="583.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Events" wrappingWidth="89.13671875" />
+            <TextField alignment="TOP_LEFT" editable="false" layoutX="13.0" layoutY="282.0" prefHeight="229.0" prefWidth="135.0" style="-fx-background-color: white;" />
+            <TextField alignment="TOP_LEFT" editable="false" layoutX="165.0" layoutY="591.0" prefHeight="145.0" prefWidth="459.0" style="-fx-background-color: white;" />
+            <Button alignment="CENTER" layoutX="865.0" layoutY="587.0" mnemonicParsing="false" onAction="#setplayerinfo" prefHeight="42.0" prefWidth="78.0" style="-fx-background-color: red; -fx-background-radius: 5em;" text="UP" textAlignment="CENTER" textFill="#f5f5f5">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" layoutX="792.0" layoutY="628.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="78.0" style="-fx-background-color: red; -fx-background-radius: 5em;" text="LEFT" textAlignment="CENTER" textFill="#f5f5f5">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" layoutX="943.0" layoutY="628.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="78.0" style="-fx-background-color: red; -fx-background-radius: 5em;" text="RIGHT" textAlignment="CENTER" textFill="#f5f5f5">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" layoutX="736.0" layoutY="691.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="112.0" style="-fx-background-color: red; -fx-background-radius: 5em;" text="ATTACK" textAlignment="CENTER" textFill="#f5f5f5">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" layoutX="850.0" layoutY="691.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="112.0" style="-fx-background-color: red; -fx-background-radius: 5em;" text="ITEM" textAlignment="CENTER" textFill="#f5f5f5">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" layoutX="965.0" layoutY="690.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="112.0" style="-fx-background-color: red; -fx-background-radius: 5em;" text="RUN" textAlignment="CENTER" textFill="#f5f5f5">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
          </children>
-      </VBox>
-      <Pane layoutX="250.0" layoutY="50.0" prefHeight="539.0" prefWidth="720.0">
-         <children>
-            <GridPane alignment="CENTER" layoutX="162.0" layoutY="64.0" prefHeight="418.0" prefWidth="396.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <RadioButton id="goal" contentDisplay="CENTER" mnemonicParsing="false" stylesheets="@application.css" GridPane.columnIndex="1" GridPane.halignment="CENTER">
-                     <toggleGroup>
-                        <ToggleGroup fx:id="level" />
-                     </toggleGroup></RadioButton>
-                  <RadioButton contentDisplay="CENTER" mnemonicParsing="false" toggleGroup="$level" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                  <RadioButton contentDisplay="CENTER" mnemonicParsing="false" toggleGroup="$level" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                  <RadioButton contentDisplay="CENTER" mnemonicParsing="false" toggleGroup="$level" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                  <RadioButton contentDisplay="CENTER" mnemonicParsing="false" toggleGroup="$level" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                  <RadioButton contentDisplay="CENTER" mnemonicParsing="false" toggleGroup="$level" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                  <RadioButton contentDisplay="CENTER" mnemonicParsing="false" toggleGroup="$level" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                  <RadioButton contentDisplay="CENTER" mnemonicParsing="false" toggleGroup="$level" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                  <RadioButton contentDisplay="CENTER" mnemonicParsing="false" toggleGroup="$level" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                  <RadioButton contentDisplay="CENTER" mnemonicParsing="false" toggleGroup="$level" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                  <RadioButton contentDisplay="CENTER" mnemonicParsing="false" toggleGroup="$level" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-                  <RadioButton contentDisplay="CENTER" mnemonicParsing="false" toggleGroup="$level" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-                  <RadioButton contentDisplay="CENTER" mnemonicParsing="false" toggleGroup="$level" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-                  <RadioButton contentDisplay="CENTER" mnemonicParsing="false" toggleGroup="$level" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-                  <RadioButton contentDisplay="CENTER" mnemonicParsing="false" toggleGroup="$level" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-                  <RadioButton contentDisplay="CENTER" mnemonicParsing="false" toggleGroup="$level" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-                  <RadioButton contentDisplay="CENTER" mnemonicParsing="false" selected="true" toggleGroup="$level" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
-               </children>
-            </GridPane>
-         </children>
-      </Pane>
+      </AnchorPane>
    </children>
 </AnchorPane>
