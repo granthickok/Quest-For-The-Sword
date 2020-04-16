@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="751.0" prefWidth="1127.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SelectController">
+   <children>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="751.0" prefWidth="1127.0" style="-fx-background-color: black;">
+         <children>
+            <Button fx:id="embark" alignment="CENTER" layoutX="938.0" layoutY="661.0" mnemonicParsing="false" onAction="#LoadBaseLevel" prefHeight="51.0" prefWidth="101.0" style="-fx-background-color: red; -fx-background-radius: 5em;" text="Embark" textAlignment="CENTER" textFill="#f5f5f5">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Text layoutX="326.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="How To Play" wrappingWidth="474.64453125">
+               <font>
+                  <Font size="72.0" />
+               </font>
+               <fill>
+                  <LinearGradient endX="1.0" startY="0.9904761904761905">
+                     <stops>
+                        <Stop color="#2d991f" />
+                        <Stop color="#99221f" offset="0.22182723071453972" />
+                        <Stop color="#332879" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+               <effect>
+                  <Glow level="1.0" />
+               </effect>
+            </Text>
+            <Text layoutX="260.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Greetings and welcome to Quest for the Sword!" wrappingWidth="505.64453125">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <fill>
+                  <LinearGradient endX="1.0" startY="0.9904761904761905">
+                     <stops>
+                        <Stop color="#2d991f" />
+                        <Stop color="#99221f" offset="0.22182723071453972" />
+                        <Stop color="#332879" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+               <effect>
+                  <Glow level="1.0" />
+               </effect>
+            </Text>
+            <Text layoutX="61.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="In the land of Talthur, legend speaks of the mythical sword Excalibur hidden away inside the keep of the vicious dragon Morthar. Your goal is to traverse the perilous land in order to slay the dragon and claim the sword as your own." wrappingWidth="951.64453125">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <fill>
+                  <LinearGradient endX="1.0" startY="0.9904761904761905">
+                     <stops>
+                        <Stop color="#2d991f" />
+                        <Stop color="#99221f" offset="0.22182723071453972" />
+                        <Stop color="#332879" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+               <effect>
+                  <Glow level="1.0" />
+               </effect>
+            </Text>
+            <Text layoutX="61.0" layoutY="410.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Press a directional button to the desired space to advance either up, left or right. Each space has a chance for either an item or a monster to appear. Items are added to your inventory and monsters begin combat." wrappingWidth="951.64453125">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <fill>
+                  <LinearGradient endX="1.0" startY="0.9904761904761905">
+                     <stops>
+                        <Stop color="#2d991f" />
+                        <Stop color="#99221f" offset="0.22182723071453972" />
+                        <Stop color="#332879" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+               <effect>
+                  <Glow level="1.0" />
+               </effect>
+            </Text>
+            <Text layoutX="61.0" layoutY="539.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Combat is turn based and you can either attempt to run, use an item or attack. Every attack has a chance to be evaded on which no damage will be taken. Items can heal you or increase your stats. Running will attempt to end the fight but failure will result in an empty turn." wrappingWidth="951.64453125">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <fill>
+                  <LinearGradient endX="1.0" startY="0.9904761904761905">
+                     <stops>
+                        <Stop color="#2d991f" />
+                        <Stop color="#99221f" offset="0.22182723071453972" />
+                        <Stop color="#332879" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+               <effect>
+                  <Glow level="1.0" />
+               </effect>
+            </Text>
+            <Text layoutX="350.0" layoutY="695.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Good luck on your noble quest!" wrappingWidth="505.64453125">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <fill>
+                  <LinearGradient endX="1.0" startY="0.9904761904761905">
+                     <stops>
+                        <Stop color="#2d991f" />
+                        <Stop color="#99221f" offset="0.22182723071453972" />
+                        <Stop color="#332879" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+               <effect>
+                  <Glow level="1.0" />
+               </effect>
+            </Text>
+            <Button fx:id="back" layoutX="61.0" layoutY="660.0" mnemonicParsing="false" onAction="#LoadUser" prefHeight="51.0" prefWidth="92.0" style="-fx-background-color: blue; -fx-background-radius: 5em;" text="     BACK" textFill="#f5f5f5">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
