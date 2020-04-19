@@ -72,13 +72,13 @@ public class SelectController  implements Initializable{
 	public Label gname = null; // Name displayed in game
 	
 	@FXML
-	public Label gdmg = null; // Name displayed in game
+	public Label gdmg = null; // Damage displayed in game
 	
 	@FXML
-	public Label ghp = null; // Name displayed in game
+	public Label ghp = null; // Hp displayed in game
 	
 	@FXML
-	public Label gev = null; // Name displayed in game
+	public Label gev = null; // EV displayed in game
 	
 	@FXML
 	public Label name_Class=null;
@@ -104,8 +104,12 @@ public class SelectController  implements Initializable{
 		
 		public int maxHP; // Health of player
 
-		public float EV; // Evade chance of player
+		public int EV; // Evade chance of player
+		
+		public boolean dead = false;
 
+/* Class for player */		
+		
 public player() { // Default constructor
 			
 			
@@ -123,7 +127,7 @@ public player() { // Default constructor
 			
 		}
 
-public player(String n, String r, int d, int h, float e){ // Defined player constructor
+public player(String n, String r, int d, int h, int e){ // Defined player constructor
 			
 		this.name = n;
 
@@ -133,12 +137,76 @@ public player(String n, String r, int d, int h, float e){ // Defined player cons
 
 		this.HP = h;
 
-		maxHP = h;
+		this.maxHP = h;
 		
 		this.EV = e;
 
 		}
 			
+public void setName(String n) {  // Return and set name
+	
+	this.name = n;
+	
+}
+
+public String getName() { 
+	
+	return name;
+	
+}
+
+public void setDmg(int d) {  // Return and set damage
+	
+	this.DMG = d;
+	
+}
+
+public int getDmg() { 
+	
+	return DMG;
+	
+}
+
+public void setHp(int h) {  // Return and set hp
+	
+	this.HP = h;
+	
+}
+
+public int getHp() { 
+	
+	return HP;
+	
+}
+
+public int getmaxHp() { // Return max HP
+	
+	return maxHP;
+	
+}
+
+public void setEv(int e) {  // Return and set ev
+	
+	this.EV = e;
+	
+}
+
+public int getEv() { 
+	
+	return EV;
+	
+}
+
+public boolean getDead() { // Return and set living status
+    
+	return dead;
+}
+
+public void setDead(boolean dead) {
+    
+	this.dead = dead;
+}
+
 public void setMage() { // Set player class to mage
 			
 		this.role = "Mage";
@@ -147,9 +215,9 @@ public void setMage() { // Set player class to mage
 
 		this.HP = 3500;
 
-		maxHP = HP;
+		this.maxHP = HP;
 		
-		this.EV = (1/7);
+		this.EV = 14;
 			
 		}
 
@@ -161,9 +229,9 @@ public void setWarrior() { // Set player class to warrior
 
 		this.HP = 4500;
 		
-		maxHP = HP;
+		this.maxHP = HP;
 
-		this.EV = (1/10);
+		this.EV = 10;
 			
 		}
 
@@ -175,9 +243,9 @@ public void setThief() { // Set player class to thief
 
 		this.HP = 3000;
 
-		maxHP = HP;
+		this.maxHP = HP;
 		
-		this.EV = (1/3);
+		this.EV = 34;
 
 		}
 			
@@ -189,16 +257,186 @@ public void setMonk() { // Set player class to monk
 
 		this.HP = 3300;
 		
-		maxHP = HP;
+		this.maxHP = HP;
 
-		this.EV = (1/5);
+		this.EV = 20;
 
-	}	
+}		
+		
+public void attack(enemy e) {
+	
+	
+	
+	
+}	
 			
 		}
 	
-	public static player playboy = new player(); // New player is created
+	/* Class and methods for enemy */	
 	
+	public static class enemy{
+		
+
+	public String ename; // Enemy name
+	
+	public int HP; // Enemy Hp
+	
+	public int maxHP; // Enemy max Hp
+	
+	public int DMG; // Enemy damage
+	
+	public int EV; // Enemy evasion
+	
+	public String special; // Enemy special effect
+	
+	public boolean dead = false; // Enemy living status
+	
+public enemy() { // Default constructor
+		
+		
+		ename = "";
+
+		DMG = 0;
+
+		HP = 0;
+
+		maxHP = HP;
+		
+		EV = 0;
+		
+		special = "";
+		
+	}
+	
+public enemy(String n, int d, int h, int e, String s){ // Defined enemy constructor
+		
+		this.ename = n;
+
+		this.DMG = d;
+
+		this.HP = h;
+
+		this.maxHP = h;
+		
+		this.EV = e;
+		
+		this.special = s;
+
+		}
+
+public void setName(String n) {  // Return and set name
+	
+	this.ename = n;
+	
+}
+
+public String getName() { 
+	
+	return ename;
+	
+}
+
+public int getmaxHp() { // Return max HP
+	
+	return maxHP;
+	
+}
+
+public void setDmg(int d) {  // Return and set damage
+	
+	this.DMG = d;
+	
+}
+
+public int getDmg() { 
+	
+	return DMG;
+	
+}
+
+public void setHp(int h) {  // Return and set hp
+	
+	this.HP = h;
+	
+}
+
+public int getHp() { 
+	
+	return HP;
+	
+}
+
+public void setEv(int e) {  // Return and set ev
+	
+	this.EV = e;
+	
+}
+
+public int getEv() { 
+	
+	return EV;
+	
+}
+
+public boolean getDead() { // Return and set living status
+    
+	return dead;
+}
+
+public void setDead(boolean dead) {
+    
+	this.dead = dead;
+}
+	
+	}
+	
+	/* Player is created */
+	
+	public static player playboy = new player();
+	
+	/* Enemies are created */
+	
+	public enemy orc = new enemy("Orc Warrior", 300, 1200, 10, "Bleed" );
+	
+	public enemy goblin = new enemy("Goblin Archer", 200, 800, 30, "Bleed" );
+	
+	public enemy necromancer = new enemy("Vile Necromancer", 400, 1000, 20, "Fear" );
+	
+	public enemy troll = new enemy("Cave Troll", 500, 1300, 10, "Break" );
+	
+	public enemy minotaur = new enemy("Enraged Minotaur", 450, 1500, 10, "Break" );
+	
+	public enemy hydra = new enemy("Lake Hydra", 450, 1400, 10, "Fear" );
+	
+	public enemy zombie = new enemy("Rotten Zombie", 300, 800, 20, "Fear" );
+	
+	public enemy thrall = new enemy("Morthar's Thrall", 250, 700, 30, "Bleed" );
+	
+	public enemy demon = new enemy("Demon Crusher", 400, 1200, 20, "Break");
+	
+	public enemy witch = new enemy("Frost Witch", 350, 1100, 15, "Break" );
+	
+	public enemy boss = new enemy("Morthar", 600, 2000, 15, "Break" );
+	
+	public static ArrayList<enemy> enemyList = new ArrayList<enemy>();
+
+/* Method to populate enemy array */	
+	
+public void popEnemies(ArrayList<enemy> a) {
+	
+a.add(orc);
+a.add(goblin);
+a.add(necromancer);
+a.add(troll);
+a.add(minotaur);
+a.add(hydra);
+a.add(zombie);
+a.add(thrall);
+a.add(demon);
+a.add(witch);
+a.add(boss);
+
+}
 	/* Method to set player name */
 
 @FXML	
@@ -250,27 +488,6 @@ public void toMonk(ActionEvent event) {
 	
 	System.out.println(playboy.name + " the " + playboy.role); //delete
 }
-
- /* Method to set player info in game BUGGED*/
-@FXML
-public void setplayerinfo() {
-	
-	gname.setText(playboy.name + " the " + playboy.role);	
-	
-	String outHP = Integer.toString(playboy.HP);
-	
-	ghp.setText(outHP);
-	
-	String outDMG = Integer.toString(playboy.DMG);
-	
-	gdmg.setText(outDMG);
-	
-	String outEV = Float.toString(playboy.EV);
-	
-	gev.setText(outEV);
-	
-	
-}
 	
 	/* Method to change to character select */
 	
@@ -296,6 +513,7 @@ public void LoadBaseLevel(ActionEvent event) throws IOException {
 		rootPane1 = loader.load();
 		SelectController controller=loader.<SelectController>getController();	// Controller for FXML injection
 		controller.setPlayerAttributes(playboy.name + " the " + playboy.role, playboy);
+		controller.popEnemies(enemyList);
         Scene scene = new Scene(rootPane1);// pane you are GOING TO show
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();// pane you are ON
         window.setScene(scene);
@@ -324,12 +542,14 @@ public void LoadHTP(ActionEvent event) throws IOException {
 		}
 	}
 
-public void setPlayerAttributes(String title, player p) {	// Set basic player attributes in BaseLevel
+/* Set basic player attributes in BaseLevel */
+
+public void setPlayerAttributes(String title, player p) {	
 	name_Class.setText(title);
 	currentHp.setText(p.HP+"/"+p.maxHP);
 	String outDMG = Integer.toString(p.DMG);
 	gdmg.setText(outDMG);
-	String outEV = Float.toString(p.EV);
+	String outEV = Integer.toString(p.EV);
 	gev.setText(outEV);
 	playboy=p;
 }
