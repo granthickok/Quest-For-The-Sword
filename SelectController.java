@@ -336,6 +336,11 @@ public String getName() {
 	
 }
 
+public String getSpecial() { // Return Special effect
+	
+	return special;
+}
+
 public int getmaxHp() { // Return max HP
 	
 	return maxHP;
@@ -416,7 +421,7 @@ public void setDead(boolean dead) {
 	
 	public enemy witch = new enemy("Frost Witch", 350, 1100, 15, "Break" );
 	
-	public enemy boss = new enemy("Morthar", 600, 2000, 15, "Break" );
+	public enemy boss = new enemy("Morthar", 600, 2000, 15, "Rend" );
 	
 	public static ArrayList<enemy> enemyList = new ArrayList<enemy>();
 
