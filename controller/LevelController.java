@@ -2,6 +2,7 @@ package application.controller;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.ResourceBundle;
 
 import application.model.Enemy;
@@ -41,6 +42,30 @@ public class LevelController implements Initializable{
 	                {-1, -1, -1,  1,  1, 1,  1,  1, -1, -1, -1},
 	                {-1, -1, -1, -1,  1, 1,  1, -1, -1, -1, -1},
 	                {-1, -1, -1, -1, -1, 0, -1, -1, -1, -1, -1}};
+	
+	/* Items and Player Inventory are created */
+	
+	public Item health = new Item("HP up", "HP", 1000, 1);
+	
+	public Item shealth = new Item("Super HP up", "HP", 2000, 1);
+	
+	public Item damage = new Item("DMG up", "DMG", 100, 1);
+	
+	public Item sdamage= new Item("Super DMG up", "DMG", 200, 1);
+	
+	public Item evade = new Item("EV up", "EV", 10, 1);
+	
+	public Item sevade = new Item("Super EV up", "EV", 20, 1);	
+	
+	public static LinkedList<Item> Inventory = new LinkedList<Item>();
+	
+	/* Method to add item to inventory */
+	
+	public void addItem(Item i) {
+		
+	Inventory.add(i);	
+	
+	}
 	
 	/* Enemies are created */
 	
