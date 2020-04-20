@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.ResourceBundle;
 
 import application.model.Enemy;
+import application.model.Item;
 import application.model.Player;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -61,13 +62,7 @@ public class LevelController implements Initializable{
 	
 	public static LinkedList<Item> Inventory = new LinkedList<Item>();
 	
-	/* Method to add item to inventory */
 	
-	public void addItem(Item i) {
-		
-	Inventory.add(i);	
-	
-	}
 	
 	/* Enemies are created */
 	
@@ -113,6 +108,14 @@ public class LevelController implements Initializable{
 
 	}
 	
+	/* Method to add item to inventory */
+	
+	public void addItem(Item i) {
+		
+		Inventory.add(i);	
+	
+	}
+	
 	/* Set basic Player attributes in BaseLevel */
 
 	public void setPlayerAttributes(String title, Player p) {	
@@ -128,7 +131,6 @@ public class LevelController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		popEnemies();
-		
 	}
 
 }
