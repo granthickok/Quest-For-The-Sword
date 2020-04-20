@@ -86,11 +86,11 @@ public class SelectController implements Initializable{
 	
 		String set = inputname.getText();
 		
-		playboy.name = set;
+		playboy.setName(set);
 		
 		inputname.clear();
 		
-		System.out.println(playboy.name);
+		System.out.println(playboy.getName());
 	}
 
 	/* Methods to set Player class */
@@ -101,7 +101,7 @@ public class SelectController implements Initializable{
 	
 		playboy.setMage();
 		
-		System.out.println(playboy.name + " the " + playboy.role); //delete
+		System.out.println(playboy.getName() + " the " + playboy.role); //delete
 	}
 
 	@FXML
@@ -110,7 +110,7 @@ public class SelectController implements Initializable{
 	
 		playboy.setWarrior();
 		
-		System.out.println(playboy.name + " the " + playboy.role); //delete
+		System.out.println(playboy.getName() + " the " + playboy.role); //delete
 	}
 
 	@FXML
@@ -119,7 +119,7 @@ public class SelectController implements Initializable{
 	
 		playboy.setThief();
 		
-		System.out.println(playboy.name + " the " + playboy.role); //delete
+		System.out.println(playboy.getName() + " the " + playboy.role); //delete
 	}
 
 	@FXML
@@ -128,7 +128,7 @@ public class SelectController implements Initializable{
 	
 		playboy.setMonk();
 		
-		System.out.println(playboy.name + " the " + playboy.role); //delete
+		System.out.println(playboy.getName() + " the " + playboy.role); //delete
 	}
 	
 	/* Method to change to character select */
@@ -154,7 +154,7 @@ public class SelectController implements Initializable{
 		loader.setLocation(getClass().getResource("../view/BaseLevel.fxml"));
 		rootPane1 = loader.load();
 		LevelController controller=loader.<LevelController>getController();	// Controller for FXML injection
-		controller.setPlayerAttributes(playboy.name + " the " + playboy.role, playboy);
+		controller.setPlayerAttributes(playboy.getName() + " the " + playboy.role, playboy);
         Scene scene = new Scene(rootPane1);// pane you are GOING TO show
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();// pane you are ON
         window.setScene(scene);
@@ -167,7 +167,7 @@ public class SelectController implements Initializable{
 	@FXML	
 	public void LoadHTP(ActionEvent event) throws IOException { 
 		
-		if(playboy.role == "" || playboy.name == "") {
+		if(playboy.role == "" || playboy.getName() == "") {
 			
 		plschoose.setText("Please set a name and class to proceed");	
 		

@@ -31,16 +31,18 @@ public class LevelController implements Initializable{
 	private Enemy e;
 	private Player p;
 	
-	int layout[][]={{-1, -1, -1, -1, -1, 1, -1, -1, -1, -1, -1},
-	                {-1, -1, -1, -1, -1, 1, -1, -1, -1, -1, -1},
-	                {-1, -1, -1, -1,  1, 1,  1, -1, -1, -1, -1},
-	                {-1, -1, -1,  1,  1, 1,  1,  1, -1, -1, -1},
-	                {-1, -1,  1,  1,  1, 1,  1,  1,  1, -1, -1},
-	                {-1,  1,  1,  1,  1, 1,  1,  1,  1,  1, -1},
-	                {-1, -1,  1,  1,  1, 1,  1,  1,  1, -1, -1},
-	                {-1, -1, -1,  1,  1, 1,  1,  1, -1, -1, -1},
-	                {-1, -1, -1, -1,  1, 1,  1, -1, -1, -1, -1},
-	                {-1, -1, -1, -1, -1, 0, -1, -1, -1, -1, -1}};
+	int layout[][]={{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+					{-1, -1, -1, -1, -1,  1, -1, -1, -1, -1, -1},
+	                {-1, -1, -1, -1, -1,  1, -1, -1, -1, -1, -1},
+	                {-1, -1, -1, -1,  1,  1,  1, -1, -1, -1, -1},
+	                {-1, -1, -1,  1,  1,  1,  1,  1, -1, -1, -1},
+	                {-1, -1,  1,  1,  1,  1,  1,  1,  1, -1, -1},
+	                {-1,  1,  1,  1,  1,  1,  1,  1,  1,  1, -1},
+	                {-1, -1,  1,  1,  1,  1,  1,  1,  1, -1, -1},
+	                {-1, -1, -1,  1,  1,  1,  1,  1, -1, -1, -1},
+	                {-1, -1, -1, -1,  1,  1,  1, -1, -1, -1, -1},
+	                {-1, -1, -1, -1, -1,  0, -1, -1, -1, -1, -1},
+	                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}};
 	
 	/* Enemies are created */
 	
@@ -72,17 +74,17 @@ public class LevelController implements Initializable{
 	
 	public void popEnemies() {
 		
-	EnemyList.add(orc);
-	EnemyList.add(goblin);
-	EnemyList.add(necromancer);
-	EnemyList.add(troll);
-	EnemyList.add(minotaur);
-	EnemyList.add(hydra);
-	EnemyList.add(zombie);
-	EnemyList.add(thrall);
-	EnemyList.add(demon);
-	EnemyList.add(witch);
-	EnemyList.add(boss);
+		EnemyList.add(orc);
+		EnemyList.add(goblin);
+		EnemyList.add(necromancer);
+		EnemyList.add(troll);
+		EnemyList.add(minotaur);
+		EnemyList.add(hydra);
+		EnemyList.add(zombie);
+		EnemyList.add(thrall);
+		EnemyList.add(demon);
+		EnemyList.add(witch);
+		EnemyList.add(boss);
 
 	}
 	
@@ -90,10 +92,10 @@ public class LevelController implements Initializable{
 
 	public void setPlayerAttributes(String title, Player p) {	
 		name_Class.setText(title);
-		currentHp.setText(p.HP+"/"+p.maxHP);
-		String outDMG = Integer.toString(p.DMG);
+		currentHp.setText(p.getHP()+"/"+p.getMaxHP());
+		String outDMG = Integer.toString(p.getDMG());
 		gdmg.setText(outDMG);
-		String outEV = Integer.toString(p.EV);
+		String outEV = Integer.toString(p.getEV());
 		gev.setText(outEV);
 		this.p=p;
 	}
