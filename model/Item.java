@@ -1,5 +1,7 @@
 package application.model;
 
+/* Class for Item */
+
 public class Item {
 	
 	public String iname; // Name of item
@@ -9,9 +11,6 @@ public class Item {
 	public int change; // Amount stat is changed
 
 	public int count; // Inventory amount
-
-
-	/* Class for player */
 
 	public Item() { // Default constructor
 		
@@ -82,7 +81,7 @@ public class Item {
 		
 	}
 	
-	public int getCount() { // Return max HP
+	public int getCount() {
 		
 		return count;
 		
