@@ -21,4 +21,7 @@ public class Enemy extends Character{
 		special = s;
 
 	}
+		public String getSpecial() {
+		return special;
+	}
 }
