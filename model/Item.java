@@ -6,13 +6,13 @@ import java.util.ArrayList;
 
 public class Item {
 	
-	public String iname; // Name of item
+	private String iname; // Name of item
 
-	public String stat; // Player stat effected
+	private String stat; // Player stat effected
 
-	public int change; // Amount stat is changed
+	private int change; // Amount stat is changed
 
-	public int count; // Inventory amount
+	private int count; // Inventory amount
 
 	public Item() { // Default constructor
 		

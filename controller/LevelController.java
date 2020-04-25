@@ -61,9 +61,6 @@ public class LevelController implements Initializable{
 	
 	@FXML
 	public Label especial = null; // Enemy damage displayed in game
-	
-	@FXML
-	public ProgressBar currentHpBar=null;
 
 	@FXML
 	public Button attackBtn = null; // Action buttons
@@ -204,13 +201,18 @@ public class LevelController implements Initializable{
 		int iroll = rand.nextInt(6);
 		
 	    Inventory.add(ItemList.get(iroll));
-	    inventoryList.getItems().add(ItemList.get(iroll).iname);
+	    inventoryList.getItems().add(ItemList.get(iroll).getName());
 	
 	}
 	
 	@FXML
-	public void setSelectedItem(ActionEvent event) {
-		itemselect.setText(inventoryList.getSelectionModel().getSelectedItem());
+	public void setSelectedItem(MouseEvent event) {
+		try{
+			itemselect.setText(inventoryList.getSelectionModel().getSelectedItem());
+		} catch(Exception e) {
+			System.out.println("Hi");
+			e.printStackTrace();
+		}
 	}
 	
 	/* Method for player to attempt to run */
@@ -248,10 +250,8 @@ public class LevelController implements Initializable{
 	/*Method for player to use item */ // Incomplete
 	
 	@FXML
-	public void useItem(MouseEvent event){
-		
-		/*if(pturn == true) {
-		
+	public void useItem(ActionEvent event){
+			
 			String item = itemselect.getText();
 		
 			if(item.equals("")) {
@@ -259,22 +259,35 @@ public class LevelController implements Initializable{
 				events.appendText("\nEnter an item in the selection box");	
 			
 			} else {
-				try{
 					Item i;
 					int x;
 					i=Item.getItem(ItemList, item);
+					
+					if(i.getStat().equals("HP")) {
+						int y=p.getHP()+i.getChange();
+						if(y>p.getMaxHP())
+							p.setHP(p.getMaxHP());
+						else
+							p.setHP(y);
+						
+						currentHp.setText(p.getHP()+"/"+p.getMaxHP());
+					}else if(i.getStat().equals("DMG")) {
+						p.setDMG(p.getDMG()+i.getChange());
+						gdmg.setText(""+p.getDMG());
+					}else {
+						p.setEV(p.getEV()+i.getChange());
+						gev.setText(""+p.getEV());
+					}
+					
+					
 					x=Inventory.indexOf(i);
 					Inventory.remove(x);
 					inventoryList.getItems().remove(x);
-				} catch(IllegalArgumentException e) {
-					return;
-				}
-				
+					itemselect.clear();
 			}
 		
-		}*/
+		}
 		
-	}
 	
 	
 	/* Set basic Player attributes in BaseLevel */
@@ -287,7 +300,6 @@ public class LevelController implements Initializable{
 		String outEV = Integer.toString(p.getEV());
 		gev.setText(outEV);
 		this.p=p.copy();
-		System.out.println("Is the player dead? "+p.isDead()+""+p.getHP());
 	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -296,7 +308,13 @@ public class LevelController implements Initializable{
 		popItems();
 		
 		l=new Levels(layout);
-
+		addItem();
+		addItem();
+		addItem();
+		addItem();
+		addItem();
+		addItem();
+		addItem();
 		setValidMoves();
 		setCurrentPos();
 
@@ -487,7 +505,7 @@ public class LevelController implements Initializable{
 		
 		e.setHP(e.getHP() - p.getDMG());
 		
-		String ehealth = Integer.toString(e.getHP());
+		String ehealth = e.getHP()+"/"+e.getMaxHP();
 		
 		if(e.getHP()<1) {
 			e.setDead(true);
@@ -528,7 +546,7 @@ public class LevelController implements Initializable{
 			
 			p.setHP(p.getHP() - e.getDMG());
 			
-			String newHp = Integer.toString(p.getHP());
+			String newHp = p.getHP()+"/"+p.getMaxHP();
 			
 			if(p.getHP() <= 0) {
 				p.setDead(true);
