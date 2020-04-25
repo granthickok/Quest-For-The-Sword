@@ -1,5 +1,7 @@
 package application.model;
 
+import java.util.ArrayList;
+
 /* Class for Item */
 
 public class Item {
@@ -85,6 +87,14 @@ public class Item {
 		
 		return count;
 		
+	}
+	
+	public static Item getItem(ArrayList<Item> i, String s) {
+		for(Item item:i) {
+			if(item.iname.equals(s))
+				return item;
+		}
+		return null;
 	}
 
 }

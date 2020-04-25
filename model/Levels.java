@@ -1,7 +1,5 @@
 package application.model;
 
-import javafx.scene.shape.Circle;
-
 public class Levels {
 	private int level[][];
 	public int x;

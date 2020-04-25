@@ -66,9 +66,5 @@ public class Player extends Character{
 		setEV(20);
 
 	}		
-		
-	public void attack(Enemy e) {	
-		e.setHP(e.getHP()-getDMG());
-	}	
 
 }

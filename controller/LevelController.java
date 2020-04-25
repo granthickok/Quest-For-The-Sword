@@ -15,9 +15,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
@@ -53,7 +55,7 @@ public class LevelController implements Initializable{
 	public ProgressBar currentHpBar=null;
 
 	@FXML
-	public Button attack = null; // Action buttons
+	public Button attackBtn = null; // Action buttons
 	
 	@FXML
 	public Button item = null;
@@ -84,6 +86,9 @@ public class LevelController implements Initializable{
 				pos3_2, pos3_3, pos40, pos41, pos42, pos43, pos44, pos4_1, pos4_2, pos4_3, pos4_4, pos50, pos51, pos52, pos53,
 				pos5_1, pos5_2, pos5_3, pos60, pos61, pos62, pos6_1, pos6_2, pos70, pos71, pos7_1, pos80, finishCircle;
 
+	@FXML
+	public ListView<String> inventoryList;
+	
 	private Circle currentPos, tmp;
 
 	private Enemy e;
@@ -126,10 +131,9 @@ public class LevelController implements Initializable{
 	
 	public Item SEVup = new Item("SEVup", "EV", 20, 1);	
 	
-	public static LinkedList<Item> Inventory = new LinkedList<Item>();
+	public LinkedList<Item> Inventory = new LinkedList<Item>();
 	
-	
-	public static ArrayList<Item> ItemList = new ArrayList<Item>(); // Total list of items
+	public ArrayList<Item> ItemList = new ArrayList<Item>(); // Total list of items
 	
 	/* Enemies are created */
 	
@@ -192,8 +196,14 @@ public class LevelController implements Initializable{
 		
 		int iroll = rand.nextInt(6);
 		
-	    
+	    Inventory.add(ItemList.get(iroll));
+	    inventoryList.getItems().add(ItemList.get(iroll).iname);
 	
+	}
+	
+	@FXML
+	public void setSelectedItem(ActionEvent event) {
+		itemselect.setText(inventoryList.getSelectionModel().getSelectedItem());
 	}
 	
 	/* Method for player to attempt to run */
@@ -205,91 +215,55 @@ public class LevelController implements Initializable{
 		
 		if(pturn == true && combat == true) {
 		
-		int runCalc = rand.nextInt(101);
+			int runCalc = rand.nextInt(101);
 		
-		if(runCalc <= 10) {
+			if(runCalc <= 10) {
 		
-			events.appendText("\n");	
+				events.appendText("\n");	
 			
-		events.appendText("\nRun Successful! WOOSH");
-		
-		combat = false;
-		
-		pturn = true;
+				events.appendText("\nRun Successful! WOOSH");
+				
+				combat=false;
 			
-		}
-		else if(runCalc > 10) {		
+			} else if(runCalc > 10) {		
 		
-		events.appendText("\nRun Failed! Prepare for pain!");	
-		
-		pturn = false;
-		
-		eturn = true;
-		}
+				events.appendText("\nRun Failed! Prepare for pain!");	
+				
+				enemyAttack();
+			}
 		
 		}
 		
 	}
 	
-	/*Method for player to attack */ 
 	
-	@FXML
-	public void attack(ActionEvent event) {
-	
-	Random rand = new Random();		
-		
-	if(pturn == true && combat == true) {
-		
-	events.appendText("\n" + p.getName() + " attacks!");	
-	
-	int dmgDone = p.getDMG();
-	
-	int eEV = e.getEV(); 
-	
-	int roll = rand.nextInt(101);
-	
-	if(roll <= eEV) { // Enemy evades
-		
-		events.appendText("Attack Evaded!");
-		
-		eturn = true;
-		
-		pturn = false;
-		
-		}		
-	else if(roll > eEV) { // Enemy is damaged
-		
-		e.setHP(dmgDone - e.getHP());
-		
-		String ehealth = Integer.toString(e.getHP());
-		
-		ecurrentHp.setText(ehealth);
-		
-		eturn = true;
-		
-		pturn = false;
-		
-		}
-	}
-	
-	}
 	
 	/*Method for player to use item */ // Incomplete
 	
 	@FXML
-	public void useItem(ActionEvent event){
+	public void useItem(MouseEvent event){
 		
 		if(pturn == true) {
 		
-		String item = itemselect.getText();
+			String item = itemselect.getText();
 		
-		if(item.equals("")) {
+			if(item.equals("")) {
 			
-		itemselect.clear();
-		
-		events.appendText("\nEnter an item in the selection box");	
+				events.appendText("\nEnter an item in the selection box");	
 			
-		}
+			} else {
+				try{
+					Item i;
+					int x;
+					i=Item.getItem(ItemList, item);
+					x=Inventory.indexOf(i);
+					Inventory.remove(x);
+					inventoryList.getItems().remove(x);
+				} catch(IllegalArgumentException e) {
+					return;
+				}
+				
+			}
 		
 		}
 		
@@ -366,10 +340,7 @@ public class LevelController implements Initializable{
 			l.moveLeft();
 			setCurrentPos();
 			
-		/*	if(croll >= 60) { //crashes game
-				
-			combat();	
-			} */
+		
 		}else {
 			return;
 		}
@@ -387,10 +358,10 @@ public class LevelController implements Initializable{
 			l.moveRight();
 			setCurrentPos();
 			
-			/*	if(croll >= 60) { //crashes game
+			if(croll >= 60) { //crashes game
 			
 			combat();	
-			} */
+			}
 		}else {
 			return;
 		}
@@ -408,10 +379,10 @@ public class LevelController implements Initializable{
 			l.moveUp();
 			setCurrentPos();
 			
-			/*	if(croll >= 60) { //crashes game
+			if(croll >= 60) { //crashes game
 			
 			combat();	
-			} */
+			}
 			
 		}else {
 			return;
@@ -447,101 +418,136 @@ public class LevelController implements Initializable{
 	@FXML
 	public void combat(){
 	
-	events.clear();	 // Set enemy attributes and begin combat
+		events.clear();	 // Set enemy attributes and begin combat
+			
+		combat = true;
+			
+		Random rand = new Random();	
+			
+		int mfinder = rand.nextInt(10); // Enemy is found from enemy list and info is sent to the gui
 		
-	combat = true;
+		e = EnemyList.get(mfinder);
 		
-	Random rand = new Random();	
+		ename.setText(e.getName());
 		
-	int mfinder = rand.nextInt(10); // Enemy is found from enemy list and info is sent to the gui
-	
-	 e = EnemyList.get(mfinder);
-	
-	ename.setText(e.getName());
-	
-	ecurrentHp.setText(e.getHP() + "/" + e.getMaxHP());
-	
-	String outDMG = Integer.toString(e.getDMG());
-	
-	edmg.setText(outDMG);
-	
-	String outEV = Integer.toString(p.getEV());
-	
-	edmg.setText(outEV);
-	
-	especial.setText(e.getSpecial());
-	
-	events.appendText("\n" + e.getName() + "approaches!");
+		ecurrentHp.setText(e.getHP() + "/" + e.getMaxHP());
 		
-	while(p.isDead() == false && e.isDead() == false) { // Combat happens until either player or enemy is dead
+		String outDMG = Integer.toString(e.getDMG());
 		
-	if(pturn == true) {
+		edmg.setText(outDMG);
+		
+		String outEV = Integer.toString(p.getEV());
+		
+		edmg.setText(outEV);
+		
+		eev.setText(""+e.getEV());
+		
+		especial.setText(e.getSpecial());
+		
+		events.appendText("\n" + e.getName() + "approaches!");
+			
+		
+		events.appendText("\nWhat will you do?");				
 	
-	events.appendText("\nWhat will you do?");	
 	
+		
 	}
 	
-	if(eturn == true) {
+	/*Method for player to attack */ 
 	
-	events.appendText("\n" + e.getName() + "attacks!");	
+	@FXML
+	public void attack(ActionEvent event) {
+		if(!combat)
+			return;
 	
-	int dmgDone = e.getDMG();
+	Random rand = new Random();		
+		
+	if(pturn == true && combat == true) {
+		
+	events.appendText("\n" + p.getName() + " attacks!");	
 	
-	int playerEV = p.getEV();
+	int dmgDone = p.getDMG();
+	
+	int eEV = e.getEV(); 
 	
 	int roll = rand.nextInt(101);
 	
-	if(roll <= playerEV) { // Player evades
+	if(roll <= eEV) { // Enemy evades
 		
-		events.appendText("Attack Evaded!");
+		events.appendText("\nAttack Evaded!");
 		
-		eturn = false;
+		eturn = true;
 		
-		pturn = true;
+		pturn = false;
 		
 		}		
-		else if(roll > playerEV) { // Player is hit and dies if HP is 0 or less
-			
-		p.setHP(p.getHP() - dmgDone);
+	else if(roll > eEV) { // Enemy is damaged
 		
-		String newHp = Integer.toString(p.getHP());
+		e.setHP(e.getHP() - dmgDone);
 		
-		currentHp.setText(newHp);
+		String ehealth = Integer.toString(e.getHP());
 		
-	    eturn = false;
-		
-		pturn = true;
-		
-		if(p.getHP() <= 0) {
-			
-		p.setDead(true);	
+		if(e.getHP()<1) {
+			e.setDead(true);
+			ecurrentHp.setText(""+0);
+		}else {
+			ecurrentHp.setText(ehealth);
 		}
 		
-		}
-	
-	}
-	
-	}
-	if(p.isDead()) { // Game over if player dies
-	
-	events.clear();	
 		
-	events.appendText("You are Dead! Game over");
-	
-	pturn = false;
-	
-	combat = false;
+		
+		}
 	}
+	
 	if(e.isDead()) { // Game proceeds if monster dies
 		
-	events.clear();
-	
-	events.appendText("The monster lies dead! Onward!");
-	
-	combat = false;
-	
-	pturn = true;
+		events.clear();
+		
+		events.appendText("The monster lies dead! Onward!");
+		
+		combat = false;
+	}else {
+		enemyAttack();
 	}
 	
+	
+	}
+	
+	private void enemyAttack() {
+		Random rand = new Random();	
+		int roll = rand.nextInt(101);
+		
+		events.appendText("\n" + e.getName() + " attacks!");
+		if(roll <= p.getEV()) { // Player evades
+			
+			events.appendText("\nAttack Evaded!");
+			
+			eturn = false;
+			
+			pturn = true;
+			
+		}else if(roll > p.getEV()) { // Player is hit and dies if HP is 0 or less
+			
+			p.setHP(p.getHP() - e.getDMG());
+			
+			String newHp = Integer.toString(p.getHP());
+			
+			if(p.getHP() <= 0) {
+				p.setDead(true);
+				currentHp.setText(""+0);
+			}else {
+				currentHp.setText(newHp);
+			}
+			
+		}
+		
+		if(p.isDead()) { // Game over if player dies
+			
+			events.clear();	
+				
+			events.appendText("You are Dead! Game over");
+			
+			combat = false;
+		}
 	}
 }
