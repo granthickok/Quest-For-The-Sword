@@ -67,4 +67,8 @@ public class Player extends Character{
 
 	}		
 
+	public Player copy() {
+		Player p=new Player(getName(), role, getDMG(), getHP(), getEV());
+		return p;
+	}
 }

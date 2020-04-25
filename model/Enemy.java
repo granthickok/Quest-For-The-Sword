@@ -24,4 +24,9 @@ public class Enemy extends Character{
 		public String getSpecial() {
 		return special;
 	}
+		
+	public Enemy copy() {
+		Enemy e=new Enemy(getName(), getDMG(), getHP(), getEV(), special);
+		return e;
+	}
 }

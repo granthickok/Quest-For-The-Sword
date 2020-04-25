@@ -286,7 +286,8 @@ public class LevelController implements Initializable{
 		gdmg.setText(outDMG);
 		String outEV = Integer.toString(p.getEV());
 		gev.setText(outEV);
-		this.p=p;
+		this.p=p.copy();
+		System.out.println("Is the player dead? "+p.isDead()+""+p.getHP());
 	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -433,7 +434,7 @@ public class LevelController implements Initializable{
 			
 		int mfinder = rand.nextInt(10); // Enemy is found from enemy list and info is sent to the gui
 		
-		e = EnemyList.get(mfinder);
+		e = EnemyList.get(mfinder).copy();
 		
 		ename.setText(e.getName());
 		
@@ -473,8 +474,6 @@ public class LevelController implements Initializable{
 		
 	events.appendText("\n" + p.getName() + " attacks!");	
 	
-	int dmgDone = p.getDMG();
-	
 	int eEV = e.getEV(); 
 	
 	int roll = rand.nextInt(101);
@@ -486,7 +485,7 @@ public class LevelController implements Initializable{
 		}		
 	else if(roll > eEV) { // Enemy is damaged
 		
-		e.setHP(e.getHP() - dmgDone);
+		e.setHP(e.getHP() - p.getDMG());
 		
 		String ehealth = Integer.toString(e.getHP());
 		
