@@ -40,6 +40,9 @@ public class SelectController implements Initializable{
 	public Button embark = null; // Button to start the game
 	
 	@FXML
+	public Button retry = null; // Button to retry game
+	
+	@FXML
 	public Button nameset = null; // Button to set Player name
 	
 	@FXML
