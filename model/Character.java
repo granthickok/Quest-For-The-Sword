@@ -114,8 +114,4 @@ public class Character {
 	public void setDead(boolean dead) {
 		this.dead = dead;
 	}
-	
-	public void attack(Character c) {
-		c.HP-=DMG;
-	}
 }
