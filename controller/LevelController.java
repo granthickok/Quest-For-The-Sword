@@ -1,5 +1,6 @@
 
 package application.controller;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -12,7 +13,10 @@ import application.model.Levels;
 import application.model.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -20,11 +24,18 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
 
 public class LevelController implements Initializable{
+	
+	@FXML
+	public AnchorPane rootPane1;
 
+	Stage stage;
+	
 	@FXML
 	public Label gdmg = null; // Player damage displayed in game
 	
@@ -97,10 +108,6 @@ public class LevelController implements Initializable{
 
 	
 	public boolean combat = false; //Booleans to control combat and turns
-	
-	public boolean eturn = false;
-	
-	public boolean pturn = true;
 	
 	Circle layout_Circle[][];
 
@@ -213,7 +220,7 @@ public class LevelController implements Initializable{
 		
 		Random rand = new Random();	
 		
-		if(pturn == true && combat == true) {
+		if(combat == true) {
 		
 			int runCalc = rand.nextInt(101);
 		
@@ -243,7 +250,7 @@ public class LevelController implements Initializable{
 	@FXML
 	public void useItem(MouseEvent event){
 		
-		if(pturn == true) {
+		/*if(pturn == true) {
 		
 			String item = itemselect.getText();
 		
@@ -265,7 +272,7 @@ public class LevelController implements Initializable{
 				
 			}
 		
-		}
+		}*/
 		
 	}
 	
@@ -335,7 +342,7 @@ public class LevelController implements Initializable{
 		
 		int croll = rand.nextInt(101);
 		
-		if(l.leftValid && pturn == true && combat == false) {
+		if(l.leftValid && combat == false) {
 			unsetValidMoves();
 			l.moveLeft();
 			setCurrentPos();
@@ -353,7 +360,7 @@ public class LevelController implements Initializable{
 		
 		int croll = rand.nextInt(101);
 		
-		if(l.rightValid && pturn == true && combat == false) {
+		if(l.rightValid && combat == false) {
 			unsetValidMoves();
 			l.moveRight();
 			setCurrentPos();
@@ -374,7 +381,7 @@ public class LevelController implements Initializable{
 		
 		int croll = rand.nextInt(101);
 		
-		if(l.upValid && pturn == true && combat == false) {
+		if(l.upValid && combat == false) {
 			unsetValidMoves();
 			l.moveUp();
 			setCurrentPos();
@@ -462,7 +469,7 @@ public class LevelController implements Initializable{
 	
 	Random rand = new Random();		
 		
-	if(pturn == true && combat == true) {
+	if(combat == true) {
 		
 	events.appendText("\n" + p.getName() + " attacks!");	
 	
@@ -475,10 +482,6 @@ public class LevelController implements Initializable{
 	if(roll <= eEV) { // Enemy evades
 		
 		events.appendText("\nAttack Evaded!");
-		
-		eturn = true;
-		
-		pturn = false;
 		
 		}		
 	else if(roll > eEV) { // Enemy is damaged
@@ -522,10 +525,6 @@ public class LevelController implements Initializable{
 			
 			events.appendText("\nAttack Evaded!");
 			
-			eturn = false;
-			
-			pturn = true;
-			
 		}else if(roll > p.getEV()) { // Player is hit and dies if HP is 0 or less
 			
 			p.setHP(p.getHP() - e.getDMG());
@@ -543,11 +542,35 @@ public class LevelController implements Initializable{
 		
 		if(p.isDead()) { // Game over if player dies
 			
-			events.clear();	
-				
-			events.appendText("You are Dead! Game over");
+//			events.clear();	
+//				
+//			events.appendText("You are Dead! Game over");
+			
+			try {
+				LoadGO();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			
 			combat = false;
 		}
+	}
+	
+	
+	public void LoadGO() throws IOException { 
+		
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("../view/GameOver.fxml"));
+		rootPane1 = loader.load();
+        Scene scene = new Scene(rootPane1);// pane you are GOING TO show
+        Stage window = stage;// pane you are ON
+        window.setScene(scene);
+        window.show();
+        
+	}	
+	
+	public void setStage(Stage s) {
+		stage=s;
 	}
 }

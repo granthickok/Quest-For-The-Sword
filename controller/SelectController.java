@@ -160,6 +160,7 @@ public class SelectController implements Initializable{
 		controller.setPlayerAttributes(playboy.getName() + " the " + playboy.role, playboy);
         Scene scene = new Scene(rootPane1);// pane you are GOING TO show
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();// pane you are ON
+        controller.setStage(window);
         window.setScene(scene);
         window.show();
         
