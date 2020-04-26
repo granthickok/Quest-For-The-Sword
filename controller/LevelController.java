@@ -161,7 +161,7 @@ public class LevelController implements Initializable{
 	
 	public Enemy witch = new Enemy("Frost Witch", 350, 1100, 15, "Break" );
 	
-	public Enemy boss = new Enemy("Morthar", 600, 2000, 15, "Rend" );
+	public Enemy boss = new Enemy("Morthar", 100, 2000, 15, "Rend" ); //nerfed
 	
 	public static ArrayList<Enemy> EnemyList = new ArrayList<Enemy>();
 	
@@ -371,7 +371,10 @@ public class LevelController implements Initializable{
 			l.moveLeft();
 			setCurrentPos();
 			
-		
+			if(croll >= 70) { //crashes game
+				
+			combat();	
+			}
 		}else {
 			return;
 		}
@@ -389,7 +392,7 @@ public class LevelController implements Initializable{
 			l.moveRight();
 			setCurrentPos();
 			
-			if(croll >= 60) { //crashes game
+			if(croll >= 70) { 
 			
 			combat();	
 			}
@@ -410,14 +413,21 @@ public class LevelController implements Initializable{
 			l.moveUp();
 			setCurrentPos();
 			
-			if(croll >= 60) { //crashes game
+			if(currentPos != finishCircle) {
+			if(croll >= 70) { 
 			
 			combat();	
 			}
 			
-		}else {
+		}
+			else if(currentPos == finishCircle) {
+				
+			bossfight();	
+			}
+			else {
 			return;
 		}
+	}
 	}
 
 	private void unsetValidMoves() {
@@ -482,8 +492,42 @@ public class LevelController implements Initializable{
 	
 	
 		
-	}
+}
+	/* Combat method */
+	@FXML
+	public void bossfight(){
 	
+		events.clear();	 // Set enemy attributes and begin combat
+			
+		combat = true;
+			
+		Random rand = new Random();	
+		
+		e = EnemyList.get(10).copy();
+		
+		ename.setText(e.getName());
+		
+		ecurrentHp.setText(e.getHP() + "/" + e.getMaxHP());
+		
+		String outDMG = Integer.toString(e.getDMG());
+		
+		edmg.setText(outDMG);
+		
+		String outEV = Integer.toString(p.getEV());
+		
+		edmg.setText(outEV);
+		
+		eev.setText(""+e.getEV());
+		
+		especial.setText(e.getSpecial());
+		
+		events.appendText("The terrible Morthar appears to defend Excalibur!");
+			
+		events.appendText("\nWhat will you do?");				
+	
+	
+		
+	}
 	/*Method for player to attack */ 
 	
 	@FXML
@@ -524,14 +568,25 @@ public class LevelController implements Initializable{
 		}
 	}
 	
-	if(e.isDead()) { // Game proceeds if monster dies
+	if(e.isDead() && currentPos != finishCircle) { // Game proceeds if monster dies and is not the final boss
 		
 		events.clear();
 		
 		events.appendText("The monster lies dead! Onward!");
 		
 		combat = false;
-	}else {
+	}
+	else if(e.isDead() && currentPos == finishCircle){
+		
+		try {
+			LoadWin();
+		} catch (IOException e1) {
+		
+			e1.printStackTrace();
+		}	
+	
+	}
+	else {
 		enemyAttack();
 	}
 	
@@ -539,10 +594,13 @@ public class LevelController implements Initializable{
 	}
 	
 	private void enemyAttack() {
+		
 		Random rand = new Random();	
+		
 		int roll = rand.nextInt(101);
 		
 		events.appendText("\n" + e.getName() + " attacks!");
+		
 		if(roll <= p.getEV()) { // Player evades
 			
 			events.appendText("\nAttack Evaded!");
@@ -554,9 +612,12 @@ public class LevelController implements Initializable{
 			String newHp = p.getHP()+"/"+p.getMaxHP();
 			
 			if(p.getHP() <= 0) {
+				
 				p.setDead(true);
+				
 				currentHp.setText(""+0);
 			}else {
+				
 				currentHp.setText(newHp);
 			}
 			
@@ -564,14 +625,10 @@ public class LevelController implements Initializable{
 		
 		if(p.isDead()) { // Game over if player dies
 			
-//			events.clear();	
-//				
-//			events.appendText("You are Dead! Game over");
-			
 			try {
 				LoadGO();
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
+			
 				e1.printStackTrace();
 			}
 			
@@ -584,6 +641,18 @@ public class LevelController implements Initializable{
 		
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("GameOver.fxml"));
+		rootPane1 = loader.load();
+        Scene scene = new Scene(rootPane1);// pane you are GOING TO show
+        Stage window = stage;// pane you are ON
+        window.setScene(scene);
+        window.show();
+        
+	}
+	
+	public void LoadWin() throws IOException { 
+		
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("Victory.fxml"));
 		rootPane1 = loader.load();
         Scene scene = new Scene(rootPane1);// pane you are GOING TO show
         Stage window = stage;// pane you are ON
