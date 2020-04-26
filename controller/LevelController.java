@@ -1,5 +1,5 @@
 
-package application.controller;
+package application;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -7,10 +7,10 @@ import java.util.LinkedList;
 import java.util.Random;
 import java.util.ResourceBundle;
 
-import application.model.Enemy;
-import application.model.Item;
-import application.model.Levels;
-import application.model.Player;
+import application.Enemy;
+import application.Item;
+import application.Levels;
+import application.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -265,18 +265,23 @@ public class LevelController implements Initializable{
 					
 					if(i.getStat().equals("HP")) {
 						int y=p.getHP()+i.getChange();
-						if(y>p.getMaxHP())
+						if(y>p.getMaxHP()) {
 							p.setHP(p.getMaxHP());
-						else
+							events.appendText("\nHealth Restored to Full!");
+						}
+						else {
 							p.setHP(y);
-						
+							events.appendText("\nHealth Restored by " + i.getChange());
+						}
 						currentHp.setText(p.getHP()+"/"+p.getMaxHP());
 					}else if(i.getStat().equals("DMG")) {
 						p.setDMG(p.getDMG()+i.getChange());
 						gdmg.setText(""+p.getDMG());
+						events.appendText("\nDamage Increased by " + i.getChange());
 					}else {
 						p.setEV(p.getEV()+i.getChange());
 						gev.setText(""+p.getEV());
+						events.appendText("\nEV Increased by " + i.getChange());
 					}
 					
 					
@@ -470,7 +475,7 @@ public class LevelController implements Initializable{
 		
 		especial.setText(e.getSpecial());
 		
-		events.appendText("\n" + e.getName() + "approaches!");
+		events.appendText(e.getName() + " approaches!");
 			
 		
 		events.appendText("\nWhat will you do?");				
@@ -578,7 +583,7 @@ public class LevelController implements Initializable{
 	public void LoadGO() throws IOException { 
 		
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("../view/GameOver.fxml"));
+		loader.setLocation(getClass().getResource("GameOver.fxml"));
 		rootPane1 = loader.load();
         Scene scene = new Scene(rootPane1);// pane you are GOING TO show
         Stage window = stage;// pane you are ON
