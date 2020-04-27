@@ -1,5 +1,5 @@
 
-package application.controller;
+package application;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -7,10 +7,10 @@ import java.util.LinkedList;
 import java.util.Random;
 import java.util.ResourceBundle;
 
-import application.model.Enemy;
-import application.model.Item;
-import application.model.Levels;
-import application.model.Player;
+import application.Enemy;
+import application.Item;
+import application.Levels;
+import application.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -128,11 +128,11 @@ public class LevelController implements Initializable{
 	
 	public Item DMGup = new Item("DMGup", "DMG", 100, 1);
 	
-	public Item SDMGup = new Item("SDMGup", "DMG", 200, 1);
+	public Item SDMGup = new Item("SDMGup", "DMG", 150, 1);
 	
 	public Item EVup = new Item("EVup", "EV", 10, 1);
 	
-	public Item SEVup = new Item("SEVup", "EV", 20, 1);	
+	public Item SEVup = new Item("SEVup", "EV", 15, 1);	
 	
 	public LinkedList<Item> Inventory = new LinkedList<Item>();
 	
@@ -143,27 +143,27 @@ public class LevelController implements Initializable{
 	public ArrayList<Item> combatDrops=new ArrayList<Item>();
 	
 	/* Enemies are created */
-	public Enemy orc = new Enemy("Orc Warrior", 300, 1200, 10, "Bleed" );
+	public Enemy orc = new Enemy("Orc Warrior", 300, 1300, 10, "Bleed" );
 	
-	public Enemy goblin = new Enemy("Goblin Archer", 200, 800, 30, "Bleed" );
+	public Enemy goblin = new Enemy("Goblin Archer", 260, 900, 30, "Bleed" );
 	
-	public Enemy necromancer = new Enemy("Vile Necromancer", 400, 1000, 20, "Fear" );
+	public Enemy necromancer = new Enemy("Vile Necromancer", 300, 1200, 20, "Fear" );
 	
-	public Enemy troll = new Enemy("Cave Troll", 500, 1300, 10, "Break" );
+	public Enemy troll = new Enemy("Cave Troll", 400, 1600, 10, "Break" );
 	
-	public Enemy minotaur = new Enemy("Enraged Minotaur", 450, 1500, 10, "Break" );
+	public Enemy minotaur = new Enemy("Enraged Minotaur", 400, 1700, 10, "Break" );
 	
-	public Enemy hydra = new Enemy("Lake Hydra", 450, 1400, 10, "Fear" );
+	public Enemy hydra = new Enemy("Lake Hydra", 400, 1700, 10, "Fear" );
 	
-	public Enemy zombie = new Enemy("Rotten Zombie", 300, 800, 20, "Fear" );
+	public Enemy zombie = new Enemy("Rotten Zombie", 300, 1000, 20, "Fear" );
 	
-	public Enemy thrall = new Enemy("Morthar's Thrall", 250, 700, 30, "Bleed" );
+	public Enemy thrall = new Enemy("Morthar's Thrall", 200, 900, 30, "Bleed" );
 	
-	public Enemy demon = new Enemy("Demon Crusher", 400, 1200, 20, "Break");
+	public Enemy demon = new Enemy("Demon Crusher", 380, 1500, 20, "Break");
 	
-	public Enemy witch = new Enemy("Frost Witch", 350, 1100, 15, "Break" );
+	public Enemy witch = new Enemy("Frost Witch", 350, 1400, 15, "Break" );
 	
-	public Enemy boss = new Enemy("Morthar", 100, 2000, 15, "Rend" ); //nerfed
+	public Enemy boss = new Enemy("Morthar", 550, 5000, 15, "Rend" ); 
 	
 	public static ArrayList<Enemy> EnemyList = new ArrayList<Enemy>();
 	
@@ -236,15 +236,14 @@ public class LevelController implements Initializable{
 		
 			int runCalc = rand.nextInt(101);
 		
-			if(runCalc <= 10) {
-		
-				events.appendText("\n");	
+			if(runCalc <= 20) {
+			
 			
 				events.appendText("\nRun Successful! WOOSH");
 				
 				combat=false;
 			
-			} else if(runCalc > 10) {		
+			} else if(runCalc > 20) {		
 		
 				events.appendText("\nRun Failed! Prepare for pain!");	
 				
@@ -350,14 +349,6 @@ public class LevelController implements Initializable{
 		popItems();
 		
 		l=new Levels(layout);
-
-		addItem("DMGup");
-		addItem("DMGup");
-		addItem("DMGup");
-		addItem("DMGup");
-		addItem("DMGup");
-		addItem("DMGup");
-		addItem("DMGup");
 		setValidMoves();
 		setCurrentPos();
 
@@ -402,16 +393,17 @@ public class LevelController implements Initializable{
 		
 		Random rand = new Random();
 		
-		int croll = rand.nextInt(101);
+		int combatroll = rand.nextInt(101);
+		int itemroll = rand.nextInt(101);
 		
 		if(l.leftValid && combat == false) {
 			unsetValidMoves();
 			l.moveLeft();
 			setCurrentPos();
-			if(croll <= 80) { // Roll for combat
+			if(combatroll <= 80) { // Roll for combat
 				
 				combat();	
-			}else if(croll>=50) {
+			}else if(itemroll>=40) {
 				rollCommonDrop();
 			}
 		}else {
@@ -424,17 +416,18 @@ public class LevelController implements Initializable{
 		
 		Random rand = new Random();
 		
-		int croll = rand.nextInt(101);
+		int combatroll = rand.nextInt(101);
+		int itemroll = rand.nextInt(101);
 		
 		if(l.rightValid && combat == false) {
 			unsetValidMoves();
 			l.moveRight();
 			setCurrentPos();
 			
-			if(croll <= 70) { // Roll for combat
+			if(combatroll <= 80) { // Roll for combat
 				
 			combat();	
-			}else if(croll>=50) {
+			}else if(itemroll>=40) {
 				rollCommonDrop();
 			}
 		}else {
@@ -447,7 +440,9 @@ public class LevelController implements Initializable{
 		
 		Random rand = new Random();
 		
-		int croll = rand.nextInt(101);
+		int combatroll = rand.nextInt(101);
+		int itemroll = rand.nextInt(101);
+		
 		
 		if(l.upValid && combat == false) {
 			unsetValidMoves();
@@ -455,10 +450,10 @@ public class LevelController implements Initializable{
 			setCurrentPos();
 
 			if(currentPos != finishCircle) {
-				if(croll >= 70) { 
+				if(combatroll >= 80) { 
 				
 					combat();	
-				}else if(croll>=50) {
+				}else if(itemroll>=40) {
 					rollCommonDrop();
 				}
 			
@@ -520,11 +515,9 @@ public class LevelController implements Initializable{
 		
 		edmg.setText(outDMG);
 		
-		String outEV = Integer.toString(p.getEV());
+		String outEV = Integer.toString(e.getEV());
 		
-		edmg.setText(outEV);
-		
-		eev.setText(""+e.getEV());
+		eev.setText(outEV);
 		
 		especial.setText(e.getSpecial());
 		
@@ -554,11 +547,9 @@ public class LevelController implements Initializable{
 		
 		edmg.setText(outDMG);
 		
-		String outEV = Integer.toString(p.getEV());
+		String outEV = Integer.toString(e.getEV());
 		
-		edmg.setText(outEV);
-		
-		eev.setText(""+e.getEV());
+		eev.setText(outEV);
 		
 		especial.setText(e.getSpecial());
 		
@@ -658,7 +649,7 @@ public class LevelController implements Initializable{
 			
 			String effect = e.getSpecial(); // Stats are afflicted
 			
-		if(sroll < 80){ // Change
+		if(sroll < 51){
 			
 		if(effect == "Bleed") { // Bleed Special
 			
@@ -750,7 +741,7 @@ public class LevelController implements Initializable{
 	public void LoadGO() throws IOException { 
 		
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("../view/GameOver.fxml"));
+		loader.setLocation(getClass().getResource("GameOver.fxml"));
 		rootPane1 = loader.load();
         Scene scene = new Scene(rootPane1);// pane you are GOING TO show
         Stage window = stage;// pane you are ON
@@ -762,7 +753,7 @@ public class LevelController implements Initializable{
 	public void LoadWin() throws IOException { 
 		
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("../view/Victory.fxml"));
+		loader.setLocation(getClass().getResource("Victory.fxml"));
 		rootPane1 = loader.load();
         Scene scene = new Scene(rootPane1);// pane you are GOING TO show
         Stage window = stage;// pane you are ON
