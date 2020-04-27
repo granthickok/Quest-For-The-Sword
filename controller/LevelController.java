@@ -666,11 +666,14 @@ public class LevelController implements Initializable{
 			
 			events.appendText("\nYou bleed profusely. - 100 HP");
 			
-			newHp = String.valueOf(p.getHP());
+			newHp = String.valueOf(p.getHP()+"/"+p.getMaxHP());
 		}
 		if(effect == "Break") { // Break Special 
 			
-			p.setEV(p.getEV() - 5);
+			if(p.getEV()-5>0)
+				p.setEV(p.getEV() - 5);
+			else
+				p.setEV(0);
 			
 			events.appendText("\nYou feel a bone break restricting movement. - 5 EV");
 			
@@ -681,7 +684,10 @@ public class LevelController implements Initializable{
 		}
 		if(effect == "Fear") { // Fear Special 
 			
-			p.setDMG(p.getDMG() - 40);
+			if(p.getDMG()-40>0)
+				p.setDMG(p.getDMG() - 40);
+			else
+				p.setDMG(0);
 			
 			events.appendText("\nA crippling fear rattles your resolve. - 40 DMG");
 			
@@ -692,9 +698,15 @@ public class LevelController implements Initializable{
 		}
 		if(effect == "Rend") { // Rend Special 
 			
-			p.setDMG(p.getDMG() - 30);
+			if(p.getDMG()-30>0)
+				p.setDMG(p.getDMG() - 30);
+			else
+				p.setDMG(0);
 			
-			p.setEV(p.getEV() - 5);
+			if(p.getEV()-5>0)
+				p.setEV(p.getEV() - 5);
+			else
+				p.setEV(0);
 			
 			events.appendText("\nMorthar unleashes a pillar of flame!  - 30 DMG and - 5 EV");
 			
