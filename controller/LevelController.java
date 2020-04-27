@@ -42,6 +42,7 @@ public class LevelController implements Initializable{
 	
 	@FXML
 	public Label name_Class=null;
+	
 	@FXML
 	public Label currentHp=null;
 	
@@ -143,27 +144,27 @@ public class LevelController implements Initializable{
 	
 	/* Enemies are created */
 	
-	public Enemy orc = new Enemy("Orc Warrior", 300, 1200, 10, "Bleed" );
+	public Enemy orc = new Enemy("Orc Warrior", 200, 1200, 10, "Bleed" );
 	
 	public Enemy goblin = new Enemy("Goblin Archer", 200, 800, 30, "Bleed" );
 	
-	public Enemy necromancer = new Enemy("Vile Necromancer", 400, 1000, 20, "Fear" );
+	public Enemy necromancer = new Enemy("Vile Necromancer", 300, 1000, 20, "Fear" );
 	
-	public Enemy troll = new Enemy("Cave Troll", 500, 1300, 10, "Break" );
+	public Enemy troll = new Enemy("Cave Troll", 400, 1300, 10, "Break" );
 	
-	public Enemy minotaur = new Enemy("Enraged Minotaur", 450, 1500, 10, "Break" );
+	public Enemy minotaur = new Enemy("Enraged Minotaur", 350, 1500, 10, "Break" );
 	
-	public Enemy hydra = new Enemy("Lake Hydra", 450, 1400, 10, "Fear" );
+	public Enemy hydra = new Enemy("Lake Hydra", 350, 1400, 10, "Fear" );
 	
-	public Enemy zombie = new Enemy("Rotten Zombie", 300, 800, 20, "Fear" );
+	public Enemy zombie = new Enemy("Rotten Zombie", 200, 800, 20, "Fear" );
 	
-	public Enemy thrall = new Enemy("Morthar's Thrall", 250, 700, 30, "Bleed" );
+	public Enemy thrall = new Enemy("Morthar's Thrall", 150, 700, 30, "Bleed" );
 	
-	public Enemy demon = new Enemy("Demon Crusher", 400, 1200, 20, "Break");
+	public Enemy demon = new Enemy("Demon Crusher", 300, 1200, 20, "Break");
 	
-	public Enemy witch = new Enemy("Frost Witch", 350, 1100, 15, "Break" );
+	public Enemy witch = new Enemy("Frost Witch", 250, 1100, 15, "Break" );
 	
-	public Enemy boss = new Enemy("Morthar", 100, 2000, 15, "Rend" ); //nerfed
+	public Enemy boss = new Enemy("Morthar", 500, 2000, 15, "Rend" ); //nerfed
 	
 	public static ArrayList<Enemy> EnemyList = new ArrayList<Enemy>();
 	
@@ -205,13 +206,14 @@ public class LevelController implements Initializable{
 		combatDrops.add(SEVup);
 	}
 	
-	/* Method to add item to inventory */ // Incomplete
+	/* Method to add item to inventory */
 	
+
 	public void addItem(String i) {
 		Item item = Item.getItem(ItemList, i);
 	    Inventory.add(item);
 	    inventoryList.getItems().add(i);
-	
+
 	}
 	
 	@FXML
@@ -292,6 +294,12 @@ public class LevelController implements Initializable{
 					int x;
 					i=Item.getItem(ItemList, item);
 					
+					if(i == null) {
+						
+					events.appendText("\nItem not Found!");
+					itemselect.clear();
+					}
+					else {
 					if(i.getStat().equals("HP")) {
 						int y=p.getHP()+i.getChange();
 						if(y>p.getMaxHP()) {
@@ -318,7 +326,8 @@ public class LevelController implements Initializable{
 					Inventory.remove(x);
 					inventoryList.getItems().remove(x);
 					itemselect.clear();
-			}
+					}
+					}
 		
 		}
 		
@@ -342,6 +351,7 @@ public class LevelController implements Initializable{
 		popItems();
 		
 		l=new Levels(layout);
+
 		addItem("DMGup");
 		addItem("DMGup");
 		addItem("DMGup");
@@ -399,8 +409,7 @@ public class LevelController implements Initializable{
 			unsetValidMoves();
 			l.moveLeft();
 			setCurrentPos();
-			
-			if(croll >= 70) { //crashes game
+			if(croll <= 80) { // Roll for combat
 				
 				combat();	
 			}else if(croll>=50) {
@@ -423,8 +432,8 @@ public class LevelController implements Initializable{
 			l.moveRight();
 			setCurrentPos();
 			
-			if(croll >= 70) { 
-			
+			if(croll <= 70) { // Roll for combat
+				
 			combat();	
 			}else if(croll>=50) {
 				rollCommonDrop();
@@ -445,7 +454,7 @@ public class LevelController implements Initializable{
 			unsetValidMoves();
 			l.moveUp();
 			setCurrentPos();
-			
+
 			if(currentPos != finishCircle) {
 				if(croll >= 70) { 
 				
@@ -455,9 +464,11 @@ public class LevelController implements Initializable{
 				}
 			
 			}
+
 			else if(currentPos == finishCircle) {
 				
-			bossfight();	
+			bossfight();
+			
 			}
 			else {
 			return;
@@ -493,8 +504,6 @@ public class LevelController implements Initializable{
 	/* Combat method */
 	@FXML
 	public void combat(){
-	
-		events.clear();	 // Set enemy attributes and begin combat
 			
 		combat = true;
 			
@@ -520,7 +529,7 @@ public class LevelController implements Initializable{
 		
 		especial.setText(e.getSpecial());
 		
-		events.appendText(e.getName() + " approaches!");
+		events.appendText("\n" + e.getName() + " approaches!");
 			
 		
 		events.appendText("\nWhat will you do?");				
@@ -554,7 +563,7 @@ public class LevelController implements Initializable{
 		
 		especial.setText(e.getSpecial());
 		
-		events.appendText("The terrible Morthar appears to defend Excalibur!");
+		events.appendText("You enter Morthar's lair and engage the beast!");
 			
 		events.appendText("\nWhat will you do?");				
 	
@@ -634,6 +643,8 @@ public class LevelController implements Initializable{
 		
 		int roll = rand.nextInt(101);
 		
+		int sroll = rand.nextInt(101);
+		
 		events.appendText("\n" + e.getName() + " attacks!");
 		
 		if(roll <= p.getEV()) { // Player evades
@@ -645,6 +656,59 @@ public class LevelController implements Initializable{
 			p.setHP(p.getHP() - e.getDMG());
 			
 			String newHp = p.getHP()+"/"+p.getMaxHP();
+			
+			String effect = e.getSpecial(); // Stats are afflicted
+			
+		if(sroll < 80){ // Change
+			
+		if(effect == "Bleed") { // Bleed Special
+			
+			p.setHP(p.getHP() - 100);
+			
+			events.appendText("\nYou bleed profusely. - 100 HP");
+			
+			newHp = String.valueOf(p.getHP());
+		}
+		if(effect == "Break") { // Break Special 
+			
+			p.setEV(p.getEV() - 5);
+			
+			events.appendText("\nYou feel a bone break restricting movement. - 5 EV");
+			
+			String newEV = String.valueOf(p.getEV());
+			
+			gev.setText(newEV);
+			
+		}
+		if(effect == "Fear") { // Fear Special 
+			
+			p.setDMG(p.getDMG() - 40);
+			
+			events.appendText("\nA crippling fear rattles your resolve. - 40 DMG");
+			
+			String newDMG = String.valueOf(p.getDMG());
+			
+			gdmg.setText(newDMG);
+			
+		}
+		if(effect == "Rend") { // Rend Special 
+			
+			p.setDMG(p.getDMG() - 30);
+			
+			p.setEV(p.getEV() - 5);
+			
+			events.appendText("\nMorthar unleashes a pillar of flame!  - 30 DMG and - 5 EV");
+			
+			String newDMG = String.valueOf(p.getDMG());
+			
+			String newEV = String.valueOf(p.getEV());
+			
+			gdmg.setText(newDMG);
+			
+			gev.setText(newEV);
+		}
+			
+		}
 			
 			if(p.getHP() <= 0) {
 				
