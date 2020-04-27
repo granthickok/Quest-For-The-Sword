@@ -71,18 +71,17 @@
                   <Circle fx:id="pos80" fill="DODGERBLUE" layoutX="458.0" layoutY="132.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
                   <Circle fx:id="finishCircle" fill="DODGERBLUE" layoutX="458.0" layoutY="81.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
                </children></Pane>
-            <Text fill="#f5efef" layoutX="14.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inventory" wrappingWidth="89.13671875" />
-            <Text fill="#f5efef" layoutX="13.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status Effect" wrappingWidth="89.13671875" />
-            <Text fill="#f5efef" layoutX="14.0" layoutY="528.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enemy" wrappingWidth="89.13671875" />
-            <Pane layoutX="14.0" layoutY="540.0" prefHeight="94.0" prefWidth="123.0" style="-fx-background-color: white;">
+            <Text fill="#f5efef" layoutX="14.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inventory" wrappingWidth="89.13671875" />
+            <Text fill="#f5efef" layoutX="14.0" layoutY="388.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enemy" wrappingWidth="89.13671875" />
+            <Pane layoutX="14.0" layoutY="403.0" prefHeight="94.0" prefWidth="123.0" style="-fx-background-color: white;">
                <children>
                   <Text layoutX="7.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HP : " wrappingWidth="30.13671875" />
                   <Text layoutX="10.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EV : " wrappingWidth="23.13671875" />
                   <Text layoutX="8.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DMG:" wrappingWidth="49.13671875" />
-                  <Label fx:id="ename" alignment="CENTER" layoutX="16.0" layoutY="6.0" prefHeight="17.0" prefWidth="78.0" text="Enemy Name" />
+                  <Label fx:id="ename" alignment="CENTER" layoutX="16.0" layoutY="6.0" prefHeight="17.0" prefWidth="89.0" text="Enemy Name" />
                   <Label fx:id="ecurrentHp" alignment="CENTER" layoutX="45.0" layoutY="21.0" prefHeight="17.0" prefWidth="78.0" text="\$$" />
                   <Label fx:id="eev" alignment="CENTER" layoutX="45.0" layoutY="38.0" prefHeight="17.0" prefWidth="49.0" text="\$$" />
-                  <Label fx:id="edmg" alignment="CENTER" layoutX="45.0" layoutY="55.0" prefHeight="17.0" prefWidth="49.0" text="\$$" />
+                  <Label fx:id="edmg" alignment="CENTER" layoutX="25.0" layoutY="55.0" prefHeight="17.0" prefWidth="89.0" text="\$$" />
                   <Text layoutX="8.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Special:" wrappingWidth="49.13671875" />
                   <Label fx:id="especial" alignment="CENTER" layoutX="45.0" layoutY="71.0" prefHeight="17.0" prefWidth="49.0" text="\$$" />
                </children>
@@ -118,15 +117,11 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <TextField alignment="TOP_LEFT" editable="false" layoutX="14.0" layoutY="152.0" prefHeight="105.0" prefWidth="141.0" style="-fx-background-color: white;" />
-            <TextField fx:id="itemselect" alignment="TOP_LEFT" layoutX="14.0" layoutY="658.0" prefHeight="24.0" prefWidth="141.0" style="-fx-background-color: white;" />
-            <Text fill="#f5efef" layoutX="14.0" layoutY="652.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Select" wrappingWidth="89.13671875" />
-            <TextArea fx:id="events" layoutX="210.0" layoutY="582.0" prefHeight="149.0" prefWidth="360.0" style="-fx-background-color: white;">
-               <font>
-                  <Font size="8.0" />
-               </font></TextArea>
-            <TextArea fx:id="pinventory" layoutX="14.0" layoutY="286.0" prefHeight="198.0" prefWidth="141.0" style="-fx-background-color: white;" />
-            <ListView fx:id="inventoryList" layoutX="14.0" layoutY="286.0" onMouseClicked="#setSelectedItem" prefHeight="198.0" prefWidth="141.0" />
+            <TextField fx:id="itemselect" alignment="TOP_LEFT" layoutX="14.0" layoutY="540.0" prefHeight="24.0" prefWidth="141.0" style="-fx-background-color: white;" />
+            <Text fill="#f5efef" layoutX="14.0" layoutY="526.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Select" wrappingWidth="89.13671875" />
+            <TextArea fx:id="events" layoutX="210.0" layoutY="582.0" prefHeight="149.0" prefWidth="360.0" style="-fx-background-color: white;" />
+            <TextArea fx:id="pinventory" layoutX="14.0" layoutY="154.0" prefHeight="198.0" prefWidth="141.0" style="-fx-background-color: white;" />
+            <ListView fx:id="inventoryList" layoutX="14.0" layoutY="154.0" onMouseClicked="#setSelectedItem" prefHeight="198.0" prefWidth="141.0" />
          </children>
       </AnchorPane>
    </children>
