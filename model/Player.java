@@ -1,7 +1,5 @@
 package application.model;
 
-import application.model.Enemy;
-
 public class Player extends Character{
 	public String role; // Class of player
 
