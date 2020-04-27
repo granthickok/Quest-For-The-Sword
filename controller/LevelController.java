@@ -232,7 +232,7 @@ public class LevelController implements Initializable{
 		
 		Random rand = new Random();	
 		
-		if(combat == true) {
+		if(combat == true && currentPos != finishCircle) {
 		
 			int runCalc = rand.nextInt(101);
 		
@@ -250,6 +250,13 @@ public class LevelController implements Initializable{
 				enemyAttack();
 			}
 		
+		}
+		else if(combat == true && currentPos == finishCircle) {
+			
+		events.appendText("\nThere is no escaping Morthar!");
+		
+		enemyAttack();
+			
 		}
 		
 	}
