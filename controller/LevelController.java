@@ -1,5 +1,5 @@
 
-package application;
+package application.controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -7,20 +7,18 @@ import java.util.LinkedList;
 import java.util.Random;
 import java.util.ResourceBundle;
 
-import application.Enemy;
-import application.Item;
-import application.Levels;
-import application.Player;
+import application.model.Enemy;
+import application.model.Item;
+import application.model.Levels;
+import application.model.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -139,6 +137,10 @@ public class LevelController implements Initializable{
 	
 	public ArrayList<Item> ItemList = new ArrayList<Item>(); // Total list of items
 	
+	public ArrayList<Item> randomDrops=new ArrayList<Item>();
+	
+	public ArrayList<Item> combatDrops=new ArrayList<Item>();
+	
 	/* Enemies are created */
 	
 	public Enemy orc = new Enemy("Orc Warrior", 300, 1200, 10, "Bleed" );
@@ -190,18 +192,25 @@ public class LevelController implements Initializable{
 		ItemList.add(SDMGup);
 		ItemList.add(EVup);
 		ItemList.add(SEVup);
+		
+		randomDrops.add(HPup);
+		randomDrops.add(SHPup);
+		randomDrops.add(DMGup);
+		randomDrops.add(SDMGup);
+		randomDrops.add(EVup);
+		randomDrops.add(SEVup);
+		
+		combatDrops.add(SHPup);
+		combatDrops.add(SDMGup);
+		combatDrops.add(SEVup);
 	}
 	
 	/* Method to add item to inventory */ // Incomplete
 	
-	public void addItem() {
-		
-		Random rand = new Random();
-		
-		int iroll = rand.nextInt(6);
-		
-	    Inventory.add(ItemList.get(iroll));
-	    inventoryList.getItems().add(ItemList.get(iroll).getName());
+	public void addItem(String i) {
+		Item item = Item.getItem(ItemList, i);
+	    Inventory.add(item);
+	    inventoryList.getItems().add(i);
 	
 	}
 	
@@ -243,6 +252,26 @@ public class LevelController implements Initializable{
 		
 		}
 		
+	}
+	
+	public void rollCommonDrop() {
+		Random r=new Random();
+		
+		int x=r.nextInt(6);
+		Item i=randomDrops.get(x);
+		addItem(i.getName());
+		
+		events.appendText("\nYou find an "+i.getName()+" in your adventures!");
+	}
+	
+	public void rollCombatDrop() {
+		Random r=new Random();
+		
+		int x=r.nextInt(3);
+		Item i=combatDrops.get(x);
+		addItem(i.getName());
+		
+		events.appendText("\nYou find an "+i.getName()+" after defeating the "+e.getName()+"!");
 	}
 	
 	
@@ -313,13 +342,13 @@ public class LevelController implements Initializable{
 		popItems();
 		
 		l=new Levels(layout);
-		addItem();
-		addItem();
-		addItem();
-		addItem();
-		addItem();
-		addItem();
-		addItem();
+		addItem("DMGup");
+		addItem("DMGup");
+		addItem("DMGup");
+		addItem("DMGup");
+		addItem("DMGup");
+		addItem("DMGup");
+		addItem("DMGup");
 		setValidMoves();
 		setCurrentPos();
 
@@ -373,7 +402,9 @@ public class LevelController implements Initializable{
 			
 			if(croll >= 70) { //crashes game
 				
-			combat();	
+				combat();	
+			}else if(croll>=50) {
+				rollCommonDrop();
 			}
 		}else {
 			return;
@@ -395,6 +426,8 @@ public class LevelController implements Initializable{
 			if(croll >= 70) { 
 			
 			combat();	
+			}else if(croll>=50) {
+				rollCommonDrop();
 			}
 		}else {
 			return;
@@ -414,12 +447,14 @@ public class LevelController implements Initializable{
 			setCurrentPos();
 			
 			if(currentPos != finishCircle) {
-			if(croll >= 70) { 
+				if(croll >= 70) { 
+				
+					combat();	
+				}else if(croll>=50) {
+					rollCommonDrop();
+				}
 			
-			combat();	
 			}
-			
-		}
 			else if(currentPos == finishCircle) {
 				
 			bossfight();	
@@ -500,8 +535,6 @@ public class LevelController implements Initializable{
 		events.clear();	 // Set enemy attributes and begin combat
 			
 		combat = true;
-			
-		Random rand = new Random();	
 		
 		e = EnemyList.get(10).copy();
 		
@@ -574,6 +607,8 @@ public class LevelController implements Initializable{
 		
 		events.appendText("The monster lies dead! Onward!");
 		
+		rollCombatDrop();
+		
 		combat = false;
 	}
 	else if(e.isDead() && currentPos == finishCircle){
@@ -640,7 +675,7 @@ public class LevelController implements Initializable{
 	public void LoadGO() throws IOException { 
 		
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("GameOver.fxml"));
+		loader.setLocation(getClass().getResource("../view/GameOver.fxml"));
 		rootPane1 = loader.load();
         Scene scene = new Scene(rootPane1);// pane you are GOING TO show
         Stage window = stage;// pane you are ON
@@ -652,7 +687,7 @@ public class LevelController implements Initializable{
 	public void LoadWin() throws IOException { 
 		
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("Victory.fxml"));
+		loader.setLocation(getClass().getResource("../view/Victory.fxml"));
 		rootPane1 = loader.load();
         Scene scene = new Scene(rootPane1);// pane you are GOING TO show
         Stage window = stage;// pane you are ON
