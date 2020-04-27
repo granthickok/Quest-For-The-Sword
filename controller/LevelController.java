@@ -143,28 +143,27 @@ public class LevelController implements Initializable{
 	public ArrayList<Item> combatDrops=new ArrayList<Item>();
 	
 	/* Enemies are created */
-	
-	public Enemy orc = new Enemy("Orc Warrior", 200, 1200, 10, "Bleed" );
+	public Enemy orc = new Enemy("Orc Warrior", 300, 1200, 10, "Bleed" );
 	
 	public Enemy goblin = new Enemy("Goblin Archer", 200, 800, 30, "Bleed" );
 	
-	public Enemy necromancer = new Enemy("Vile Necromancer", 300, 1000, 20, "Fear" );
+	public Enemy necromancer = new Enemy("Vile Necromancer", 400, 1000, 20, "Fear" );
 	
-	public Enemy troll = new Enemy("Cave Troll", 400, 1300, 10, "Break" );
+	public Enemy troll = new Enemy("Cave Troll", 500, 1300, 10, "Break" );
 	
-	public Enemy minotaur = new Enemy("Enraged Minotaur", 350, 1500, 10, "Break" );
+	public Enemy minotaur = new Enemy("Enraged Minotaur", 450, 1500, 10, "Break" );
 	
-	public Enemy hydra = new Enemy("Lake Hydra", 350, 1400, 10, "Fear" );
+	public Enemy hydra = new Enemy("Lake Hydra", 450, 1400, 10, "Fear" );
 	
-	public Enemy zombie = new Enemy("Rotten Zombie", 200, 800, 20, "Fear" );
+	public Enemy zombie = new Enemy("Rotten Zombie", 300, 800, 20, "Fear" );
 	
-	public Enemy thrall = new Enemy("Morthar's Thrall", 150, 700, 30, "Bleed" );
+	public Enemy thrall = new Enemy("Morthar's Thrall", 250, 700, 30, "Bleed" );
 	
-	public Enemy demon = new Enemy("Demon Crusher", 300, 1200, 20, "Break");
+	public Enemy demon = new Enemy("Demon Crusher", 400, 1200, 20, "Break");
 	
-	public Enemy witch = new Enemy("Frost Witch", 250, 1100, 15, "Break" );
+	public Enemy witch = new Enemy("Frost Witch", 350, 1100, 15, "Break" );
 	
-	public Enemy boss = new Enemy("Morthar", 500, 2000, 15, "Rend" ); //nerfed
+	public Enemy boss = new Enemy("Morthar", 100, 2000, 15, "Rend" ); //nerfed
 	
 	public static ArrayList<Enemy> EnemyList = new ArrayList<Enemy>();
 	
