@@ -4,26 +4,25 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="675.0" prefWidth="1019.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LevelController">
+<AnchorPane prefHeight="675.0" prefWidth="1019.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.LevelController">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1126.0" style="-fx-background-color: black;">
          <children>
-            <Pane layoutX="14.0" layoutY="24.0" prefHeight="87.0" prefWidth="123.0" style="-fx-background-color: white;">
+            <Pane layoutX="14.0" layoutY="24.0" prefHeight="87.0" prefWidth="141.0" style="-fx-background-color: white;">
                <children>
                   <Text layoutX="6.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HP : " wrappingWidth="30.13671875" />
                   <Text layoutX="2.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DMG : " wrappingWidth="37.13671875" />
                   <Text layoutX="9.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EV : " wrappingWidth="23.13671875" />
                   <Label fx:id="name_Class" alignment="CENTER" layoutX="-3.0" layoutY="14.0" prefHeight="17.0" prefWidth="123.0" text="Name" />
-                  <Label fx:id="currentHp" alignment="CENTER" layoutX="34.0" layoutY="31.0" prefHeight="17.0" prefWidth="68.0" text="\$$" />
-                  <Label fx:id="gdmg" alignment="CENTER" layoutX="34.0" layoutY="47.0" prefHeight="17.0" prefWidth="49.0" text="\$$" />
-                  <Label fx:id="gev" alignment="CENTER" layoutX="34.0" layoutY="62.0" prefHeight="17.0" prefWidth="49.0" text="\$$" />
+                  <Label fx:id="currentHp" alignment="CENTER" layoutX="33.0" layoutY="31.0" prefHeight="17.0" prefWidth="104.0" text="\$$" />
+                  <Label fx:id="gdmg" alignment="CENTER" layoutX="61.0" layoutY="47.0" prefHeight="17.0" prefWidth="49.0" text="\$$" />
+                  <Label fx:id="gev" alignment="CENTER" layoutX="61.0" layoutY="62.0" prefHeight="17.0" prefWidth="49.0" text="\$$" />
                </children>
             </Pane>
             <Pane layoutX="166.0" layoutY="24.0" prefHeight="540.0" prefWidth="916.0" style="-fx-background-color: white;">
@@ -73,17 +72,17 @@
                </children></Pane>
             <Text fill="#f5efef" layoutX="14.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inventory" wrappingWidth="89.13671875" />
             <Text fill="#f5efef" layoutX="14.0" layoutY="388.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enemy" wrappingWidth="89.13671875" />
-            <Pane layoutX="14.0" layoutY="403.0" prefHeight="94.0" prefWidth="123.0" style="-fx-background-color: white;">
+            <Pane layoutX="14.0" layoutY="403.0" prefHeight="94.0" prefWidth="141.0" style="-fx-background-color: white;">
                <children>
                   <Text layoutX="7.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HP : " wrappingWidth="30.13671875" />
                   <Text layoutX="10.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EV : " wrappingWidth="23.13671875" />
                   <Text layoutX="8.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DMG:" wrappingWidth="49.13671875" />
                   <Label fx:id="ename" alignment="CENTER" layoutX="16.0" layoutY="6.0" prefHeight="17.0" prefWidth="89.0" text="Enemy Name" />
-                  <Label fx:id="ecurrentHp" alignment="CENTER" layoutX="45.0" layoutY="21.0" prefHeight="17.0" prefWidth="78.0" text="\$$" />
-                  <Label fx:id="eev" alignment="CENTER" layoutX="45.0" layoutY="38.0" prefHeight="17.0" prefWidth="49.0" text="\$$" />
-                  <Label fx:id="edmg" alignment="CENTER" layoutX="25.0" layoutY="55.0" prefHeight="17.0" prefWidth="89.0" text="\$$" />
+                  <Label fx:id="ecurrentHp" alignment="CENTER" layoutX="34.0" layoutY="21.0" prefHeight="17.0" prefWidth="104.0" text="\$$" />
+                  <Label fx:id="eev" alignment="CENTER" layoutX="62.0" layoutY="38.0" prefHeight="17.0" prefWidth="49.0" text="\$$" />
+                  <Label fx:id="edmg" alignment="CENTER" layoutX="42.0" layoutY="55.0" prefHeight="17.0" prefWidth="89.0" text="\$$" />
                   <Text layoutX="8.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Special:" wrappingWidth="49.13671875" />
-                  <Label fx:id="especial" alignment="CENTER" layoutX="45.0" layoutY="71.0" prefHeight="17.0" prefWidth="49.0" text="\$$" />
+                  <Label fx:id="especial" alignment="CENTER" layoutX="62.0" layoutY="71.0" prefHeight="17.0" prefWidth="49.0" text="\$$" />
                </children>
             </Pane>
             <Text fill="#f5efef" layoutX="210.0" layoutY="577.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Events" wrappingWidth="89.13671875" />
@@ -117,9 +116,14 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <TextField fx:id="itemselect" alignment="TOP_LEFT" layoutX="14.0" layoutY="540.0" prefHeight="24.0" prefWidth="141.0" style="-fx-background-color: white;" />
+            <Pane layoutX="14.0" layoutY="540.0" prefHeight="72.0" prefWidth="141.0" style="-fx-background-color: white;">
+               <children>
+                  <Label fx:id="itemselect" alignment="CENTER" prefHeight="31.0" prefWidth="141.0" textAlignment="CENTER" />
+                  <Label fx:id="itemStats" alignment="CENTER" layoutY="28.0" prefHeight="42.0" prefWidth="141.0" textAlignment="CENTER" />
+               </children>
+            </Pane>
             <Text fill="#f5efef" layoutX="14.0" layoutY="526.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Select" wrappingWidth="89.13671875" />
-            <TextArea fx:id="events" layoutX="210.0" layoutY="582.0" prefHeight="149.0" prefWidth="360.0" style="-fx-background-color: white;" />
+            <TextArea fx:id="events" editable="false" layoutX="210.0" layoutY="582.0" prefHeight="149.0" prefWidth="360.0" style="-fx-background-color: white;" wrapText="true" />
             <TextArea fx:id="pinventory" layoutX="14.0" layoutY="154.0" prefHeight="198.0" prefWidth="141.0" style="-fx-background-color: white;" />
             <ListView fx:id="inventoryList" layoutX="14.0" layoutY="154.0" onMouseClicked="#setSelectedItem" prefHeight="198.0" prefWidth="141.0" />
          </children>
