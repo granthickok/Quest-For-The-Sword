@@ -165,7 +165,7 @@ public class LevelController implements Initializable{
 	
 	public Enemy witch = new Enemy("Frost Witch", 350, 1400, 15, "Break" );
 	
-	public Enemy boss = new Enemy("Morthar", 550, 5000, 15, "Rend" ); 
+	public Enemy boss = new Enemy("Morthar", 550, 6000, 15, "Rend" ); 
 	
 	public static ArrayList<Enemy> EnemyList = new ArrayList<Enemy>();
 	
