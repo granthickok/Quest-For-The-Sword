@@ -1,5 +1,5 @@
 
-package application;
+package application.controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -7,10 +7,10 @@ import java.util.LinkedList;
 import java.util.Random;
 import java.util.ResourceBundle;
 
-import application.Enemy;
-import application.Item;
-import application.Levels;
-import application.Player;
+import application.model.Enemy;
+import application.model.Item;
+import application.model.Levels;
+import application.model.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +20,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
@@ -86,7 +85,10 @@ public class LevelController implements Initializable{
 	public TextArea pinventory = null;
 	
 	@FXML
-	public TextField itemselect = null;
+	public Label itemselect = null;
+	
+	@FXML
+	public Label itemStats;
 	
 	@FXML
 	public Circle startCircle, pos10, pos11, pos1_1, pos20, pos21, pos22, pos2_1, pos2_2, pos30, pos31, pos32, pos33, pos3_1,
@@ -122,17 +124,17 @@ public class LevelController implements Initializable{
 	
 	/* Items and Player Inventory are created */
 	
-	public Item HPup = new Item("HPup", "HP", 1000, 1);
+	public Item HPup = new Item("HP Potion", "HP", 1000, 1);
 	
-	public Item SHPup = new Item("SHPup", "HP", 2000, 1);
+	public Item SHPup = new Item("Super HP Potion", "HP", 2000, 1);
 	
-	public Item DMGup = new Item("DMGup", "DMG", 100, 1);
+	public Item DMGup = new Item("Damage Potion", "DMG", 100, 1);
 	
-	public Item SDMGup = new Item("SDMGup", "DMG", 150, 1);
+	public Item SDMGup = new Item("Super Damage Potion", "DMG", 150, 1);
 	
-	public Item EVup = new Item("EVup", "EV", 10, 1);
+	public Item EVup = new Item("Evasion Potion", "EV", 10, 1);
 	
-	public Item SEVup = new Item("SEVup", "EV", 15, 1);	
+	public Item SEVup = new Item("Super Evasion Potion", "EV", 15, 1);	
 	
 	public LinkedList<Item> Inventory = new LinkedList<Item>();
 	
@@ -218,7 +220,15 @@ public class LevelController implements Initializable{
 	@FXML
 	public void setSelectedItem(MouseEvent event) {
 		try{
-			itemselect.setText(inventoryList.getSelectionModel().getSelectedItem());
+			String s=inventoryList.getSelectionModel().getSelectedItem();
+			Item i=Item.getItem(ItemList, s);
+			itemselect.setText(s);
+			if(i.getStat().equals("HP"))
+				itemStats.setText("+"+i.getChange()+" Health");
+			else if(i.getStat().equals("DMG"))
+				itemStats.setText("+"+i.getChange()+" Damage");
+			else
+				itemStats.setText("+"+i.getChange()+" Evasion");
 		} catch(Exception e) {
 			System.out.println("Hi");
 			e.printStackTrace();
@@ -302,7 +312,8 @@ public class LevelController implements Initializable{
 					if(i == null) {
 						
 					events.appendText("\nItem not Found!");
-					itemselect.clear();
+					itemselect.setText("");
+					itemStats.setText("");
 					}
 					else {
 					if(i.getStat().equals("HP")) {
@@ -330,7 +341,8 @@ public class LevelController implements Initializable{
 					x=Inventory.indexOf(i);
 					Inventory.remove(x);
 					inventoryList.getItems().remove(x);
-					itemselect.clear();
+					itemselect.setText("");
+					itemStats.setText("");
 					}
 					}
 		
@@ -748,7 +760,7 @@ public class LevelController implements Initializable{
 	public void LoadGO() throws IOException { 
 		
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("GameOver.fxml"));
+		loader.setLocation(getClass().getResource("../view/GameOver.fxml"));
 		rootPane1 = loader.load();
         Scene scene = new Scene(rootPane1);// pane you are GOING TO show
         Stage window = stage;// pane you are ON
@@ -760,7 +772,7 @@ public class LevelController implements Initializable{
 	public void LoadWin() throws IOException { 
 		
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("Victory.fxml"));
+		loader.setLocation(getClass().getResource("../view/Victory.fxml"));
 		rootPane1 = loader.load();
         Scene scene = new Scene(rootPane1);// pane you are GOING TO show
         Stage window = stage;// pane you are ON
