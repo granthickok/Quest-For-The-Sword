@@ -19,7 +19,7 @@
                   <Text layoutX="6.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HP : " wrappingWidth="30.13671875" />
                   <Text layoutX="2.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DMG : " wrappingWidth="37.13671875" />
                   <Text layoutX="9.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EV : " wrappingWidth="23.13671875" />
-                  <Label fx:id="name_Class" alignment="CENTER" layoutX="-3.0" layoutY="14.0" prefHeight="17.0" prefWidth="123.0" text="Name" />
+                  <Label fx:id="name_Class" alignment="CENTER" layoutX="-3.0" layoutY="14.0" prefHeight="17.0" prefWidth="141.0" text="Name" />
                   <Label fx:id="currentHp" alignment="CENTER" layoutX="33.0" layoutY="31.0" prefHeight="17.0" prefWidth="104.0" text="\$$" />
                   <Label fx:id="gdmg" alignment="CENTER" layoutX="61.0" layoutY="47.0" prefHeight="17.0" prefWidth="49.0" text="\$$" />
                   <Label fx:id="gev" alignment="CENTER" layoutX="61.0" layoutY="62.0" prefHeight="17.0" prefWidth="49.0" text="\$$" />
@@ -77,7 +77,7 @@
                   <Text layoutX="7.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HP : " wrappingWidth="30.13671875" />
                   <Text layoutX="10.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EV : " wrappingWidth="23.13671875" />
                   <Text layoutX="8.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DMG:" wrappingWidth="49.13671875" />
-                  <Label fx:id="ename" alignment="CENTER" layoutX="16.0" layoutY="6.0" prefHeight="17.0" prefWidth="89.0" text="Enemy Name" />
+                  <Label fx:id="ename" alignment="CENTER" layoutX="-2.0" layoutY="6.0" prefHeight="17.0" prefWidth="141.0" text="Enemy Name" />
                   <Label fx:id="ecurrentHp" alignment="CENTER" layoutX="34.0" layoutY="21.0" prefHeight="17.0" prefWidth="104.0" text="\$$" />
                   <Label fx:id="eev" alignment="CENTER" layoutX="62.0" layoutY="38.0" prefHeight="17.0" prefWidth="49.0" text="\$$" />
                   <Label fx:id="edmg" alignment="CENTER" layoutX="42.0" layoutY="55.0" prefHeight="17.0" prefWidth="89.0" text="\$$" />

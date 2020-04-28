@@ -1,3 +1,7 @@
+/*
+ * Class that enemies will be based off of
+ */
+
 package application.model;
 
 /* Class and methods for enemy */
@@ -21,10 +25,17 @@ public class Enemy extends Character{
 		special = s;
 
 	}
-		public String getSpecial() {
+	
+	/**
+	 * @return the value of special
+	 */
+	public String getSpecial() {
 		return special;
 	}
-		
+	
+	/**
+	 * @return a copy of the selected enemy
+	 */
 	public Enemy copy() {
 		Enemy e=new Enemy(getName(), getDMG(), getHP(), getEV(), special);
 		return e;

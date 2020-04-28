@@ -31,7 +31,7 @@ public class LevelController implements Initializable{
 	@FXML
 	public AnchorPane rootPane1;
 
-	Stage stage;
+	Stage stage;	// Placeholder to keep previous stage
 	
 	@FXML
 	public Label gdmg = null; // Player damage displayed in game
@@ -40,10 +40,10 @@ public class LevelController implements Initializable{
 	public Label gev = null; // Player EV displayed in game
 	
 	@FXML
-	public Label name_Class=null;
+	public Label name_Class=null;	// Label to hold player name and class name
 	
 	@FXML
-	public Label currentHp=null;
+	public Label currentHp=null;	// label to hold players current hp
 	
 	@FXML
 	public Label edmg = null; // Enemy damage displayed in game
@@ -67,7 +67,7 @@ public class LevelController implements Initializable{
 	public Button item = null;
 	
 	@FXML
-	public Button run = null;
+	public Button run = null;	
 	
 	@FXML
 	public Button up = null; // Movement buttons
@@ -79,16 +79,13 @@ public class LevelController implements Initializable{
 	public Button right = null;
 	
 	@FXML
-	public TextArea events = null; 
+	public TextArea events = null; // Text area to let the player know whats happening
 	
 	@FXML
-	public TextArea pinventory = null;
+	public Label itemselect = null;	// Label to show current items name
 	
 	@FXML
-	public Label itemselect = null;
-	
-	@FXML
-	public Label itemStats;
+	public Label itemStats;	// Label to show current items stats
 	
 	@FXML
 	public Circle startCircle, pos10, pos11, pos1_1, pos20, pos21, pos22, pos2_1, pos2_2, pos30, pos31, pos32, pos33, pos3_1,
@@ -96,19 +93,21 @@ public class LevelController implements Initializable{
 				pos5_1, pos5_2, pos5_3, pos60, pos61, pos62, pos6_1, pos6_2, pos70, pos71, pos7_1, pos80, finishCircle;
 
 	@FXML
-	public ListView<String> inventoryList;
+	public ListView<String> inventoryList;	// Listview to show current players inventory
 	
-	private Circle currentPos, tmp;
+	private Circle currentPos, tmp;	// Placeholder circles to hold players current position and temp variables
 
-	private Enemy e;
+	// Placeholder variables for easy access
+	private Enemy e;	
 	private Player p;
 	private Levels l;
 
 	
 	public boolean combat = false; //Booleans to control combat and turns
 	
-	Circle layout_Circle[][];
+	Circle layout_Circle[][];	// Circle matrix to show visual representation of int matrix
 
+	// Map layout
 	int layout[][]={{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
 					{-1, -1, -1, -1, -1,  1, -1, -1, -1, -1, -1},
 	                {-1, -1, -1, -1, -1,  1, -1, -1, -1, -1, -1},
@@ -124,25 +123,25 @@ public class LevelController implements Initializable{
 	
 	/* Items and Player Inventory are created */
 	
-	public Item HPup = new Item("HP Potion", "HP", 1000, 1);
+	public Item HPup = new Item("HP Potion", "HP", 1000);
 	
-	public Item SHPup = new Item("Super HP Potion", "HP", 2000, 1);
+	public Item SHPup = new Item("Super HP Potion", "HP", 2000);
 	
-	public Item DMGup = new Item("Damage Potion", "DMG", 100, 1);
+	public Item DMGup = new Item("Damage Potion", "DMG", 100);
 	
-	public Item SDMGup = new Item("Super Damage Potion", "DMG", 150, 1);
+	public Item SDMGup = new Item("Super Damage Potion", "DMG", 150);
 	
-	public Item EVup = new Item("Evasion Potion", "EV", 10, 1);
+	public Item EVup = new Item("Evasion Potion", "EV", 10);
 	
-	public Item SEVup = new Item("Super Evasion Potion", "EV", 15, 1);	
+	public Item SEVup = new Item("Super Evasion Potion", "EV", 15);	
 	
-	public LinkedList<Item> Inventory = new LinkedList<Item>();
+	public LinkedList<Item> Inventory = new LinkedList<Item>();	// Items in inventory
 	
 	public ArrayList<Item> ItemList = new ArrayList<Item>(); // Total list of items
 	
-	public ArrayList<Item> randomDrops=new ArrayList<Item>();
+	public ArrayList<Item> randomDrops=new ArrayList<Item>();	// Items available for random drops
 	
-	public ArrayList<Item> combatDrops=new ArrayList<Item>();
+	public ArrayList<Item> combatDrops=new ArrayList<Item>();	// Items available for combat drops
 	
 	/* Enemies are created */
 	public Enemy orc = new Enemy("Orc Warrior", 300, 1300, 10, "Bleed" );
@@ -186,6 +185,8 @@ public class LevelController implements Initializable{
 		EnemyList.add(boss);
 	}
 	
+	/* Method to populate all the item lists */
+	
 	public void popItems() {
 		
 		ItemList.add(HPup);
@@ -217,12 +218,15 @@ public class LevelController implements Initializable{
 
 	}
 	
+	/*
+	 * FXML method to handle when the player selects an item in their inventory
+	 */
 	@FXML
 	public void setSelectedItem(MouseEvent event) {
-		try{
-			String s=inventoryList.getSelectionModel().getSelectedItem();
+		try {
+			String s=inventoryList.getSelectionModel().getSelectedItem();	// Get selected item
 			Item i=Item.getItem(ItemList, s);
-			itemselect.setText(s);
+			itemselect.setText(s);	// Set selected item information
 			if(i.getStat().equals("HP"))
 				itemStats.setText("+"+i.getChange()+" Health");
 			else if(i.getStat().equals("DMG"))
@@ -230,9 +234,9 @@ public class LevelController implements Initializable{
 			else
 				itemStats.setText("+"+i.getChange()+" Evasion");
 		} catch(Exception e) {
-			System.out.println("Hi");
-			e.printStackTrace();
+			return;
 		}
+		
 	}
 	
 	/* Method for player to attempt to run */
@@ -242,11 +246,11 @@ public class LevelController implements Initializable{
 		
 		Random rand = new Random();	
 		
-		if(combat == true && currentPos != finishCircle) {
+		if(combat == true && currentPos != finishCircle) {	// Check if the player is in combat and they are not at the boss circle
 		
 			int runCalc = rand.nextInt(101);
 		
-			if(runCalc <= 20) {
+			if(runCalc <= 25) {	// Roll for ability to run
 			
 			
 				events.appendText("\nRun Successful! WOOSH");
@@ -261,16 +265,19 @@ public class LevelController implements Initializable{
 			}
 		
 		}
-		else if(combat == true && currentPos == finishCircle) {
+		else if(combat == true && currentPos == finishCircle) {	// Inform player they cannot run at boss
 			
-		events.appendText("\nThere is no escaping Morthar!");
-		
-		enemyAttack();
+			events.appendText("\nThere is no escaping Morthar!");
+			
+			enemyAttack();
 			
 		}
 		
 	}
 	
+	/*
+	 * Method to roll for a random drop
+	 */
 	public void rollCommonDrop() {
 		Random r=new Random();
 		
@@ -278,9 +285,12 @@ public class LevelController implements Initializable{
 		Item i=randomDrops.get(x);
 		addItem(i.getName());
 		
-		events.appendText("\nYou find an "+i.getName()+" in your adventures!");
+		events.appendText("\nYou find an "+i.getName()+" in your adventures!");	// Inform player
 	}
 	
+	/*
+	 * Method to roll for a combat drop
+	 */
 	public void rollCombatDrop() {
 		Random r=new Random();
 		
@@ -288,68 +298,69 @@ public class LevelController implements Initializable{
 		Item i=combatDrops.get(x);
 		addItem(i.getName());
 		
-		events.appendText("\nYou find an "+i.getName()+" after defeating the "+e.getName()+"!");
+		events.appendText("\nYou find an "+i.getName()+" after defeating the "+e.getName()+"!"); // Infrom player
 	}
 	
 	
 	
-	/*Method for player to use item */ // Incomplete
+	/*Method for player to use item */
 	
 	@FXML
 	public void useItem(ActionEvent event){
 			
 			String item = itemselect.getText();
 		
-			if(item.equals("")) {
+			if(item.equals("")) {	// Checks if selected item is blank
 			
-				events.appendText("\nEnter an item in the selection box");	
+				events.appendText("\nSelect an item in the inventory box!");	
 			
-			} else {
-					Item i;
-					int x;
-					i=Item.getItem(ItemList, item);
+			} else {	// Begins getting item information
+				Item i;
+				int x;
+				i=Item.getItem(ItemList, item);	// Get item from the item list
+				
+				if(i == null) {	// Check if the item isnt found in the item list
 					
-					if(i == null) {
-						
 					events.appendText("\nItem not Found!");
 					itemselect.setText("");
 					itemStats.setText("");
-					}
-					else {
+				} else {	// Check what type of item was used
 					if(i.getStat().equals("HP")) {
 						int y=p.getHP()+i.getChange();
 						if(y>p.getMaxHP()) {
 							p.setHP(p.getMaxHP());
 							events.appendText("\nHealth Restored to Full!");
-						}
-						else {
-							p.setHP(y);
-							events.appendText("\nHealth Restored by " + i.getChange());
-						}
-						currentHp.setText(p.getHP()+"/"+p.getMaxHP());
-					}else if(i.getStat().equals("DMG")) {
-						p.setDMG(p.getDMG()+i.getChange());
-						gdmg.setText(""+p.getDMG());
-						events.appendText("\nDamage Increased by " + i.getChange());
-					}else {
-						p.setEV(p.getEV()+i.getChange());
-						gev.setText(""+p.getEV());
-						events.appendText("\nEV Increased by " + i.getChange());
 					}
-					
-					
-					x=Inventory.indexOf(i);
-					Inventory.remove(x);
-					inventoryList.getItems().remove(x);
-					itemselect.setText("");
-					itemStats.setText("");
+					else {
+						p.setHP(y);
+						events.appendText("\nHealth Restored by " + i.getChange());
 					}
-					}
+					currentHp.setText(p.getHP()+"/"+p.getMaxHP());
+				}else if(i.getStat().equals("DMG")) {
+					p.setDMG(p.getDMG()+i.getChange());
+					gdmg.setText(""+p.getDMG());
+					events.appendText("\nDamage Increased by " + i.getChange());
+				}else {
+					p.setEV(p.getEV()+i.getChange());
+					gev.setText(""+p.getEV());
+					events.appendText("\nEV Increased by " + i.getChange());
+				}
+				
+				// Remove the item from the inventory
+				x=Inventory.indexOf(i);
+				Inventory.remove(x);
+				inventoryList.getItems().remove(x);
+				itemselect.setText("");
+				itemStats.setText("");
+				}
+			}
 		
 		}
 		
 	
-	
+	/*
+	 * Method for fxml injection from previous controller
+	 */
 	/* Set basic Player attributes in BaseLevel */
 	
 	public void setPlayerAttributes(String title, Player p) {	
@@ -361,6 +372,7 @@ public class LevelController implements Initializable{
 		gev.setText(outEV);
 		this.p=p.copy();
 	}
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		popEnemies();
@@ -373,25 +385,31 @@ public class LevelController implements Initializable{
 
 	}
 
+	/*
+	 * Method to get the valid moves for the player and update it 
+	 */
 	private void setValidMoves() {
 		l.getValidMoves();
 
-		if(l.upValid) {
+		if(l.upValid) {	// Update upward movement
 			tmp=layout_Circle[l.y-1][l.x];
 			tmp.setFill(Paint.valueOf("Green"));
 		}
 
-		if(l.leftValid) {
+		if(l.leftValid) {	// Update leftward movement
 			tmp=layout_Circle[l.y][l.x-1];
 			tmp.setFill(Paint.valueOf("Green"));
 		}
 
-		if(l.rightValid) {
+		if(l.rightValid) {	// Update rightward movement
 			tmp=layout_Circle[l.y][l.x+1];
 			tmp.setFill(Paint.valueOf("Green"));
 		}
 	}
 
+	/*
+	 * Method to set the layout of the map
+	 */
 	private void setCircle() {
 		layout_Circle=new Circle[][] {{null,   null,   null,   null,   null,         null,  null,  null,  null,  null, null},
 			   						  {null,   null,   null,   null,   null, finishCircle,  null,  null,  null,  null, null},
@@ -407,6 +425,9 @@ public class LevelController implements Initializable{
 			   						  {null,   null,   null,   null,   null,         null,  null,  null,  null,  null, null}};
 	}
 
+	/*
+	 * FXML method to handle moving left
+	 */
 	@FXML
 	private void moveLeft(ActionEvent event) {
 		
@@ -430,6 +451,9 @@ public class LevelController implements Initializable{
 		}
 	}
 
+	/*
+	 * FXML method to handle moving right
+	 */
 	@FXML
 	private void moveRight(ActionEvent event) {
 		
@@ -454,6 +478,9 @@ public class LevelController implements Initializable{
 		}
 	}
 
+	/*
+	 * FXML method to handle moving up
+	 */
 	@FXML
 	private void moveUp(ActionEvent event) {
 		
@@ -480,15 +507,18 @@ public class LevelController implements Initializable{
 
 			else if(currentPos == finishCircle) {
 				
-			bossfight();
+				bossfight();
 			
 			}
 			else {
-			return;
+				return;
+			}
 		}
 	}
-	}
 
+	/*
+	 * Method to unset the valid moves before the player moves
+	 */
 	private void unsetValidMoves() {
 		currentPos.setFill(Paint.valueOf("Dodgerblue"));
 
@@ -507,6 +537,9 @@ public class LevelController implements Initializable{
 			tmp.setFill(Paint.valueOf("Dodgerblue"));}
 	}
 
+	/*
+	 * Method to update the gui version of the players current position
+	 */
 	private void setCurrentPos() {
 		currentPos=layout_Circle[l.y][l.x];
 		currentPos.setFill(Paint.valueOf("Red"));
@@ -646,6 +679,9 @@ public class LevelController implements Initializable{
 	
 	}
 	
+	/*
+	 * Method to handle when the enemy attacks after the player
+	 */
 	private void enemyAttack() {
 		
 		Random rand = new Random();	
@@ -668,66 +704,66 @@ public class LevelController implements Initializable{
 			
 			String effect = e.getSpecial(); // Stats are afflicted
 			
-		if(sroll < 51){
-			
-		if(effect == "Bleed") { // Bleed Special
-			
-			p.setHP(p.getHP() - 100);
-			
-			events.appendText("\nYou bleed profusely. - 100 HP");
-			
-			newHp = String.valueOf(p.getHP()+"/"+p.getMaxHP());
-		}
-		if(effect == "Break") { // Break Special 
-			
-			if(p.getEV()-5>0)
-				p.setEV(p.getEV() - 5);
-			else
-				p.setEV(0);
-			
-			events.appendText("\nYou feel a bone break restricting movement. - 5 EV");
-			
-			String newEV = String.valueOf(p.getEV());
-			
-			gev.setText(newEV);
-			
-		}
-		if(effect == "Fear") { // Fear Special 
-			
-			if(p.getDMG()-40>0)
-				p.setDMG(p.getDMG() - 40);
-			else
-				p.setDMG(0);
-			
-			events.appendText("\nA crippling fear rattles your resolve. - 40 DMG");
-			
-			String newDMG = String.valueOf(p.getDMG());
-			
-			gdmg.setText(newDMG);
-			
-		}
-		if(effect == "Rend") { // Rend Special 
-			
-			if(p.getDMG()-30>0)
-				p.setDMG(p.getDMG() - 30);
-			else
-				p.setDMG(0);
-			
-			if(p.getEV()-5>0)
-				p.setEV(p.getEV() - 5);
-			else
-				p.setEV(0);
-			
-			events.appendText("\nMorthar unleashes a pillar of flame!  - 30 DMG and - 5 EV");
-			
-			String newDMG = String.valueOf(p.getDMG());
-			
-			String newEV = String.valueOf(p.getEV());
-			
-			gdmg.setText(newDMG);
-			
-			gev.setText(newEV);
-		}
+			if(sroll < 51){
+				
+			if(effect == "Bleed") { // Bleed Special
+				
+				p.setHP(p.getHP() - 100);
+				
+				events.appendText("\nYou bleed profusely. - 100 HP");
+				
+				newHp = String.valueOf(p.getHP()+"/"+p.getMaxHP());
+			}
+			if(effect == "Break") { // Break Special 
+				
+				if(p.getEV()-5>0)
+					p.setEV(p.getEV() - 5);
+				else
+					p.setEV(0);
+				
+				events.appendText("\nYou feel a bone break restricting movement. - 5 EV");
+				
+				String newEV = String.valueOf(p.getEV());
+				
+				gev.setText(newEV);
+				
+			}
+			if(effect == "Fear") { // Fear Special 
+				
+				if(p.getDMG()-40>0)
+					p.setDMG(p.getDMG() - 40);
+				else
+					p.setDMG(0);
+				
+				events.appendText("\nA crippling fear rattles your resolve. - 40 DMG");
+				
+				String newDMG = String.valueOf(p.getDMG());
+				
+				gdmg.setText(newDMG);
+				
+			}
+			if(effect == "Rend") { // Rend Special 
+				
+				if(p.getDMG()-30>0)
+					p.setDMG(p.getDMG() - 30);
+				else
+					p.setDMG(0);
+				
+				if(p.getEV()-5>0)
+					p.setEV(p.getEV() - 5);
+				else
+					p.setEV(0);
+				
+				events.appendText("\nMorthar unleashes a pillar of flame!  - 30 DMG and - 5 EV");
+				
+				String newDMG = String.valueOf(p.getDMG());
+				
+				String newEV = String.valueOf(p.getEV());
+				
+				gdmg.setText(newDMG);
+				
+				gev.setText(newEV);
+			}
 			
 		}
 			
@@ -756,7 +792,9 @@ public class LevelController implements Initializable{
 		}
 	}
 	
-	
+	/*
+	 * Method to load Game over screen
+	 */
 	public void LoadGO() throws IOException { 
 		
 		FXMLLoader loader = new FXMLLoader();
@@ -769,6 +807,9 @@ public class LevelController implements Initializable{
         
 	}
 	
+	/*
+	 * Method to load the victory screen
+	 */
 	public void LoadWin() throws IOException { 
 		
 		FXMLLoader loader = new FXMLLoader();

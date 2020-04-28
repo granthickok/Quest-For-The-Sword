@@ -21,6 +21,9 @@ public class Player extends Character{
 
 	}
 
+	/*
+	 * Method to update the current player to the Mage class
+	 */
 	public void setMage() { // Set player class to mage
 			
 		role = "Mage";
@@ -32,6 +35,9 @@ public class Player extends Character{
 			
 		}
 
+	/*
+	 * Method to update hte current player to the Warrior class
+	 */
 	public void setWarrior() { // Set player class to warrior
 			
 		this.role = "Warrior";
@@ -43,6 +49,9 @@ public class Player extends Character{
 			
 		}
 
+	/*
+	 * Method to update the current player to the Thief class
+	 */
 	public void setThief() { // Set player class to thief
 			
 		this.role = "Thief";
@@ -54,6 +63,9 @@ public class Player extends Character{
 
 		}
 			
+	/*
+	 * Method to update the current player to the Monk class
+	 */
 	public void setMonk() { // Set player class to monk
 			
 		this.role = "Monk";
@@ -65,6 +77,10 @@ public class Player extends Character{
 
 	}		
 
+	/**
+	 * Method to copy the selected player
+	 * @return copy of the selected player
+	 */
 	public Player copy() {
 		Player p=new Player(getName(), role, getDMG(), getHP(), getEV());
 		return p;

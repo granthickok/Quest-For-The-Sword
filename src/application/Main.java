@@ -1,3 +1,7 @@
+/*
+ * Main method that starts the application
+ */
+
 package application;
 	
 import javafx.application.Application; // All necessary javafx imports are called
@@ -14,8 +18,8 @@ public class Main extends Application {
 			Parent root = FXMLLoader.load(getClass().getResource("view/StartScreen.fxml")); //fxml file is inked to main class
 			Scene scene = new Scene(root);
 			primaryStage.setTitle("Quest for the sword"); //window title is set 
-			primaryStage.setScene(scene);
-			primaryStage.show();
+			primaryStage.setScene(scene); // Load StartSceen.fxml into the stage
+			primaryStage.show();	
 		} catch(Exception e) { 
 			e.printStackTrace();
 		}

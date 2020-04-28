@@ -1,3 +1,7 @@
+/*
+ * Controller class to Handle various inputs from the user for the first few pages of the application
+ */
+
 package application.controller;
 
 import java.io.IOException;
@@ -25,7 +29,7 @@ public class SelectController implements Initializable{
 	}	
 	
 	@FXML
-	public AnchorPane rootPane1;
+	public AnchorPane rootPane1;	// AnchorPane to save fxml files to
 	
 	@FXML
 	public Button start = null; // Button to start game
@@ -103,8 +107,6 @@ public class SelectController implements Initializable{
 	
 	
 		playboy.setMage();
-		
-		System.out.println(playboy.getName() + " the " + playboy.role); //delete
 	}
 
 	@FXML
@@ -113,7 +115,6 @@ public class SelectController implements Initializable{
 	
 		playboy.setWarrior();
 		
-		System.out.println(playboy.getName() + " the " + playboy.role); //delete
 	}
 
 	@FXML
@@ -122,7 +123,6 @@ public class SelectController implements Initializable{
 	
 		playboy.setThief();
 		
-		System.out.println(playboy.getName() + " the " + playboy.role); //delete
 	}
 
 	@FXML
@@ -131,7 +131,6 @@ public class SelectController implements Initializable{
 	
 		playboy.setMonk();
 		
-		System.out.println(playboy.getName() + " the " + playboy.role); //delete
 	}
 	
 	/* Method to change to character select */

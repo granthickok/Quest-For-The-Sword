@@ -1,19 +1,23 @@
+/*
+ * Base class for setting up things used by both the player and enemies
+ */
+
 package application.model;
 
 public class Character {
 	private String name;
 	
-	private int DMG; // Damage of player
+	private int DMG; // Damage of character
 
-	private int HP; // Health of player
+	private int HP; // Health of character
 
-	private int maxHP; // Health of player
+	private int maxHP; // Health of character
 
-	private int EV; // Evade chance of player
+	private int EV; // Evade chance of character
 
-	private boolean dead;
+	private boolean dead;	// Boolean if the character is dead
 	
-	public Character() {
+	public Character() {	// Default constructor
 		name="";
 		DMG = 0;
 		HP = 0;
@@ -22,7 +26,15 @@ public class Character {
 		dead=false;
 	}
 	
-	public Character(String s, int dmg, int hp, int ev) {
+	/*
+	 * default constructor with specific values
+	 * Parameters:
+	 * 	String s - Name of character
+	 * 	int dmg - Damage of the character
+	 * 	int hp - Hp the character will have
+	 * 	int ev - Evasion the character will have
+	 */
+	public Character(String s, int dmg, int hp, int ev) {	// Constructor for various values 
 		name=s;
 		DMG=dmg;
 		HP=hp;

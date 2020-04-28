@@ -1,3 +1,7 @@
+/*
+ * Class to handle various item creation/manipulations
+ */
+
 package application.model;
 
 import java.util.ArrayList;
@@ -12,8 +16,6 @@ public class Item {
 
 	private int change; // Amount stat is changed
 
-	private int count; // Inventory amount
-
 	public Item() { // Default constructor
 		
 		
@@ -22,70 +24,54 @@ public class Item {
 		stat = "";
 	
 		change = 0;
-	
-		count = 0;
 		
 	}
 
-	public Item(String n, String s, int c, int i){ // Defined player constructor
+	public Item(String n, String s, int c){ // Defined player constructor
 		
 		this.iname = n;
 	
 		this.stat = s;
 	
 		this.change = c;
-	
-		this.count = i;
 
 	}
 	
 
 	
-	public void setName(String n) {  // Return and set name
+	public void setName(String n) {  // Set the name of the item
 		
 		this.iname = n;
 		
 	}
 
-	public String getName() { 
+	public String getName() { // Get the name of the item
 		
 		return iname;
 		
 	}
 
-	public void setStat(String s) {  // Return and set stat
+	public void setStat(String s) {  // Set the stat modified in the item
 		
 		this.stat = s;
 		
 	}
 
-	public String getStat() { 
+	public String getStat() { // Get the stat changed in the item
 		
 		return stat;
 		
 	}
 
-	public void setChange(int c) {  // Return and set change
+	public void setChange(int c) {  // Set the number to change the stat by
 		
 		this.change = c;
 		
 	}
 
-	public int getChange() { 
+	public int getChange() { // Get the number to change the stat by
 		
 		return change;
-		
-	}
-
-	public void setCount(int c) {  // Return and set count
-		
-		this.count = c;
-		
-	}
-	
-	public int getCount() {
-		
-		return count;
 		
 	}
 	
