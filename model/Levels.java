@@ -20,7 +20,6 @@ public class Levels {
 				if(level[y][x]==0) {
 					this.x=x;
 					this.y=y;
-					System.out.println(x+" "+y);
 				}
 			}
 		}
