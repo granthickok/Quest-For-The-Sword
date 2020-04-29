@@ -787,7 +787,7 @@ public class LevelController implements Initializable{
 				
 				p.setDead(true);
 				
-				currentHp.setText(""+0);
+				currentHp.setText(0+"/"+e.getMaxHP());
 				playerHPBar.setProgress((double)0);
 			}else {
 				
