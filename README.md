@@ -1,10 +1,17 @@
 # Quest for the Sword 
 A short text based game where you gather items to become more powerful and defeat the final boss.
 
-## Installation process
-1. Clone github repo to a folder of your choice.
-2. Run Main.java
-3. Enjoy the game.
+## Run Method 1 from Eclipse
+1. Clone github repo to a folder of your choice
+2. Open repo in Eclipse and compile
+3. Run Main.java
+4. Enjoy the game
+
+## Run Method 2 from jar file
+1. Download QuestForTheSword.jar file from github repo
+2. Open console and go to where QuestForTheSword.jar is located
+3. Enter command `java -jar QuestForTheSword.jar`
+4. Enjoy the game
 
 ## Functionality
 On final versions all methods and processes work as intended
