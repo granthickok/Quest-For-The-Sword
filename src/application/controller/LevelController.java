@@ -19,6 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -59,6 +60,12 @@ public class LevelController implements Initializable{
 	
 	@FXML
 	public Label especial = null; // Enemy damage displayed in game
+	
+	@FXML
+	public ProgressBar playerHPBar;
+	
+	@FXML
+	public ProgressBar enemyHPBar;
 
 	@FXML
 	public Button attackBtn = null; // Action buttons
@@ -307,17 +314,18 @@ public class LevelController implements Initializable{
 	
 	@FXML
 	public void useItem(ActionEvent event){
-			
-			String item = itemselect.getText();
+			String itemName="";
+			itemName = itemselect.getText();
 		
-			if(item.equals("")) {	// Checks if selected item is blank
+			if(itemName.equals("")) {	// Checks if selected item is blank
 			
-				events.appendText("\nSelect an item in the inventory box!");	
+				events.appendText("Select an item from the Inventory box before clicking this button!\n");	
+				return;
 			
 			} else {	// Begins getting item information
 				Item i;
 				int x;
-				i=Item.getItem(ItemList, item);	// Get item from the item list
+				i=Item.getItem(ItemList, itemName);	// Get item from the item list
 				
 				if(i == null) {	// Check if the item isnt found in the item list
 					
@@ -336,6 +344,7 @@ public class LevelController implements Initializable{
 						events.appendText("\nHealth Restored by " + i.getChange());
 					}
 					currentHp.setText(p.getHP()+"/"+p.getMaxHP());
+					playerHPBar.setProgress((double)p.getHP()/p.getMaxHP());
 				}else if(i.getStat().equals("DMG")) {
 					p.setDMG(p.getDMG()+i.getChange());
 					gdmg.setText(""+p.getDMG());
@@ -366,6 +375,7 @@ public class LevelController implements Initializable{
 	public void setPlayerAttributes(String title, Player p) {	
 		name_Class.setText(title);
 		currentHp.setText(p.getHP()+"/"+p.getMaxHP());
+		playerHPBar.setProgress((double)p.getHP()/p.getMaxHP());
 		String outDMG = Integer.toString(p.getDMG());
 		gdmg.setText(outDMG);
 		String outEV = Integer.toString(p.getEV());
@@ -563,6 +573,8 @@ public class LevelController implements Initializable{
 		
 		ecurrentHp.setText(e.getHP() + "/" + e.getMaxHP());
 		
+		enemyHPBar.setProgress((double)e.getHP()/e.getMaxHP());
+		
 		String outDMG = Integer.toString(e.getDMG());
 		
 		edmg.setText(outDMG);
@@ -594,6 +606,8 @@ public class LevelController implements Initializable{
 		ename.setText(e.getName());
 		
 		ecurrentHp.setText(e.getHP() + "/" + e.getMaxHP());
+		
+		enemyHPBar.setProgress((double)e.getHP()/e.getMaxHP());
 		
 		String outDMG = Integer.toString(e.getDMG());
 		
@@ -643,8 +657,10 @@ public class LevelController implements Initializable{
 		if(e.getHP()<1) {
 			e.setDead(true);
 			ecurrentHp.setText(""+0);
+			enemyHPBar.setProgress((double)0);
 		}else {
 			ecurrentHp.setText(ehealth);
+			enemyHPBar.setProgress((double)e.getHP()/e.getMaxHP());
 		}
 		
 		
@@ -772,9 +788,11 @@ public class LevelController implements Initializable{
 				p.setDead(true);
 				
 				currentHp.setText(""+0);
+				playerHPBar.setProgress((double)0);
 			}else {
 				
 				currentHp.setText(newHp);
+				playerHPBar.setProgress((double)p.getHP()/p.getMaxHP());
 			}
 			
 		}

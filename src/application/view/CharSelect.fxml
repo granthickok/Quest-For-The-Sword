@@ -29,7 +29,7 @@
             <Glow level="1.0" />
          </effect>
       </Text>
-      <TextField fx:id="inputname" layoutX="392.0" layoutY="197.0" prefHeight="38.0" prefWidth="296.0" style="-fx-background-color: white; -fx-border-color: red;">
+      <TextField fx:id="inputname" layoutX="392.0" layoutY="197.0" prefHeight="38.0" prefWidth="296.0" promptText="NAME" style="-fx-background-color: white; -fx-border-color: red;">
          <font>
             <Font size="18.0" />
          </font></TextField>
@@ -50,22 +50,22 @@
             <Glow level="1.0" />
          </effect>
       </Text>
-      <Button fx:id="bmage" layoutX="202.0" layoutY="434.0" mnemonicParsing="false" onAction="#toMage" prefHeight="50.0" prefWidth="158.0" style="-fx-background-color: blue; -fx-border-color: white;" text="Mage">
+      <Button fx:id="bmage" layoutX="191.0" layoutY="434.0" mnemonicParsing="false" onAction="#toMage" prefHeight="50.0" prefWidth="158.0" style="-fx-background-color: blue; -fx-border-color: white;" text="Mage" textFill="#ff7400">
          <font>
             <Font name="Jokerman" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="bwarrior" layoutX="392.0" layoutY="434.0" mnemonicParsing="false" onAction="#toWarrior" prefHeight="50.0" prefWidth="151.0" style="-fx-background-color: red; -fx-border-color: white;" text="Warrior" textAlignment="CENTER">
+      <Button fx:id="bwarrior" layoutX="382.0" layoutY="434.0" mnemonicParsing="false" onAction="#toWarrior" prefHeight="50.0" prefWidth="151.0" style="-fx-background-color: red; -fx-border-color: white;" text="Warrior" textAlignment="CENTER" textFill="#ffee00">
          <font>
             <Font name="Jokerman" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="bthief" graphicTextGap="0.0" layoutX="581.0" layoutY="434.0" mnemonicParsing="false" onAction="#toThief" prefHeight="50.0" prefWidth="151.0" style="-fx-background-color: Green; -fx-border-color: white;" text="Thief" textAlignment="CENTER">
+      <Button fx:id="bthief" graphicTextGap="0.0" layoutX="570.0" layoutY="434.0" mnemonicParsing="false" onAction="#toThief" prefHeight="50.0" prefWidth="151.0" style="-fx-background-color: purple; -fx-border-color: white;" text="Thief" textAlignment="CENTER" textFill="#efff00">
          <font>
             <Font name="Jokerman" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="bmonk" layoutX="772.0" layoutY="434.0" mnemonicParsing="false" onAction="#toMonk" prefHeight="50.0" prefWidth="158.0" style="-fx-background-color: yellow; -fx-border-color: white;" text="Monk" textAlignment="CENTER">
+      <Button fx:id="bmonk" layoutX="748.0" layoutY="434.0" mnemonicParsing="false" onAction="#toMonk" prefHeight="50.0" prefWidth="158.0" style="-fx-background-color: orange; -fx-border-color: white;" text="Monk" textAlignment="CENTER" textFill="#f2ff00">
          <font>
             <Font name="Jokerman" size="24.0" />
          </font>

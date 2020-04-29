@@ -12,7 +12,7 @@
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="751.0" prefWidth="1127.0" style="-fx-background-color: black;">
          <children>
-            <Button fx:id="embark" alignment="CENTER" layoutX="938.0" layoutY="661.0" mnemonicParsing="false" onAction="#LoadBaseLevel" prefHeight="51.0" prefWidth="101.0" style="-fx-background-color: red; -fx-background-radius: 5em;" text="Embark" textAlignment="CENTER" textFill="#f5f5f5">
+            <Button fx:id="embark" alignment="CENTER" layoutX="938.0" layoutY="661.0" mnemonicParsing="false" onAction="#LoadBaseLevel" prefHeight="51.0" prefWidth="101.0" style="-fx-background-color: red; -fx-background-radius: 5em;" text="EMBARK" textAlignment="CENTER" textFill="#f5f5f5">
                <font>
                   <Font size="18.0" />
                </font>
@@ -68,7 +68,7 @@
                   <Glow level="1.0" />
                </effect>
             </Text>
-            <Text layoutX="61.0" layoutY="410.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Press a directional button to the desired space to advance either up, left or right. Each space has a chance for either an item or a monster to appear. Items are added to your inventory and monsters begin combat." wrappingWidth="951.64453125">
+            <Text layoutX="61.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Press a directional button to the desired space to advance either up, left or right. The red circle indicates where the player currently is and the green circles are the valid moves the player can make. Each space has a chance for either an item or a monster to appear. Items are added to your inventory and monsters begin combat." wrappingWidth="951.64453125">
                <font>
                   <Font size="24.0" />
                </font>
@@ -119,7 +119,7 @@
                   <Glow level="1.0" />
                </effect>
             </Text>
-            <Button fx:id="back" layoutX="61.0" layoutY="660.0" mnemonicParsing="false" onAction="#LoadUser" prefHeight="51.0" prefWidth="108.0" style="-fx-background-color: blue; -fx-background-radius: 5em;" text="Back" textFill="#f5f5f5">
+            <Button fx:id="back" layoutX="61.0" layoutY="660.0" mnemonicParsing="false" onAction="#LoadUser" prefHeight="51.0" prefWidth="108.0" style="-fx-background-color: blue; -fx-background-radius: 5em;" text="BACK" textFill="#f5f5f5">
                <font>
                   <Font size="18.0" />
                </font>
