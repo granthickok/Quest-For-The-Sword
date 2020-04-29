@@ -137,7 +137,7 @@ public class SelectController implements Initializable{
 	public void LoadUser(ActionEvent event) throws IOException { 
 	
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("../view/CharSelect.fxml"));
+		loader.setLocation(getClass().getClassLoader().getResource("application/view/CharSelect.fxml"));
 		rootPane1 = loader.load();
         Scene scene = new Scene(rootPane1);// pane you are GOING TO show
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();// pane you are ON
@@ -151,7 +151,7 @@ public class SelectController implements Initializable{
 	public void LoadBaseLevel(ActionEvent event) throws IOException { 
 		
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("../view/BaseLevel.fxml"));
+		loader.setLocation(getClass().getClassLoader().getResource("application/view/BaseLevel.fxml"));
 		rootPane1 = loader.load();
 		LevelController controller=loader.<LevelController>getController();	// Controller for FXML injection
 		controller.setPlayerAttributes(playboy.getName() + " the " + playboy.role, playboy);
@@ -175,7 +175,7 @@ public class SelectController implements Initializable{
 		}
 		else {	
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("../view/HowToPlay.fxml"));
+		loader.setLocation(getClass().getClassLoader().getResource("application/view/HowToPlay.fxml"));
 		rootPane1 = loader.load();
         Scene scene = new Scene(rootPane1);// pane you are GOING TO show
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();// pane you are ON

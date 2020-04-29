@@ -798,7 +798,7 @@ public class LevelController implements Initializable{
 	public void LoadGO() throws IOException { 
 		
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("../view/GameOver.fxml"));
+		loader.setLocation(getClass().getClassLoader().getResource("application/view/GameOver.fxml"));
 		rootPane1 = loader.load();
         Scene scene = new Scene(rootPane1);// pane you are GOING TO show
         Stage window = stage;// pane you are ON
@@ -813,7 +813,7 @@ public class LevelController implements Initializable{
 	public void LoadWin() throws IOException { 
 		
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("../view/Victory.fxml"));
+		loader.setLocation(getClass().getClassLoader().getResource("application/view/Victory.fxml"));
 		rootPane1 = loader.load();
         Scene scene = new Scene(rootPane1);// pane you are GOING TO show
         Stage window = stage;// pane you are ON
