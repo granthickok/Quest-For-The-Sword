@@ -16,7 +16,7 @@
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1126.0" style="-fx-background-color: black;">
          <children>
-            <Pane layoutX="14.0" layoutY="24.0" prefHeight="87.0" prefWidth="141.0" style="-fx-background-color: white;">
+            <Pane layoutX="14.0" layoutY="24.0" prefHeight="87.0" prefWidth="141.0" style="-fx-background-color: gray;">
                <children>
                   <Text layoutX="6.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HP : " wrappingWidth="30.13671875" />
                   <Text layoutX="2.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DMG : " wrappingWidth="37.13671875" />
@@ -24,15 +24,15 @@
                   <Label fx:id="name_Class" alignment="CENTER" layoutX="-3.0" layoutY="14.0" prefHeight="17.0" prefWidth="141.0" text="Name" />
                   <StackPane layoutX="33.0" layoutY="31.0">
                      <children>
-                        <ProgressBar fx:id="playerHPBar" prefHeight="18.0" prefWidth="104.0" progress="0.49" style="-fx-accent: lightGreen; -fx-background-color: white;" />
-                        <Label fx:id="currentHp" alignment="CENTER" prefHeight="17.0" prefWidth="104.0" text="\$$" />
+                        <ProgressBar fx:id="playerHPBar" prefHeight="18.0" prefWidth="104.0" progress="1.0" style="-fx-accent: darkGreen; -fx-control-inner-background: black; -fx-background: gray;" />
+                        <Label fx:id="currentHp" alignment="CENTER" prefHeight="17.0" prefWidth="104.0" text="\$$" textFill="WHITE" />
                      </children>
                   </StackPane>
                   <Label fx:id="gdmg" alignment="CENTER" layoutX="61.0" layoutY="47.0" prefHeight="17.0" prefWidth="49.0" text="\$$" />
                   <Label fx:id="gev" alignment="CENTER" layoutX="61.0" layoutY="62.0" prefHeight="17.0" prefWidth="49.0" text="\$$" />
                </children>
             </Pane>
-            <Pane layoutX="166.0" layoutY="24.0" prefHeight="540.0" prefWidth="916.0" style="-fx-background-color: white;">
+            <Pane layoutX="166.0" layoutY="24.0" prefHeight="540.0" prefWidth="916.0" style="-fx-background-color: gray;">
                <children>
                   <Circle fx:id="startCircle" fill="DODGERBLUE" layoutX="458.0" layoutY="508.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
                   <Circle fx:id="pos1_1" fill="DODGERBLUE" layoutX="399.0" layoutY="464.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
@@ -79,16 +79,16 @@
                </children></Pane>
             <Text fill="#f5efef" layoutX="14.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inventory" wrappingWidth="89.13671875" />
             <Text fill="#f5efef" layoutX="14.0" layoutY="388.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enemy" wrappingWidth="89.13671875" />
-            <Pane layoutX="14.0" layoutY="403.0" prefHeight="94.0" prefWidth="141.0" style="-fx-background-color: white;">
+            <Pane layoutX="14.0" layoutY="403.0" prefHeight="94.0" prefWidth="141.0" style="-fx-background-color: gray;">
                <children>
                   <Text layoutX="7.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HP : " wrappingWidth="30.13671875" />
                   <Text layoutX="10.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EV : " wrappingWidth="23.13671875" />
                   <Text layoutX="8.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DMG:" wrappingWidth="49.13671875" />
                   <Label fx:id="ename" alignment="CENTER" layoutX="-2.0" layoutY="6.0" prefHeight="17.0" prefWidth="141.0" text="Enemy Name" />
-                  <StackPane layoutX="34.0" layoutY="21.0">
+                  <StackPane layoutX="34.0" layoutY="21.0" style="-fx-background-color: gray;">
                      <children>
-                        <ProgressBar fx:id="enemyHPBar" prefHeight="18.0" prefWidth="102.0" progress="0.0" style="-fx-accent: red;" />
-                        <Label fx:id="ecurrentHp" alignment="CENTER" prefHeight="17.0" prefWidth="104.0" />
+                        <ProgressBar fx:id="enemyHPBar" prefHeight="18.0" prefWidth="102.0" progress="1.0" style="-fx-accent: red; -fx-control-inner-background: black; -fx-background: gray;" />
+                        <Label fx:id="ecurrentHp" alignment="CENTER" prefHeight="17.0" prefWidth="104.0" text="0/0" textFill="WHITE" />
                      </children>
                   </StackPane>
                   <Label fx:id="eev" alignment="CENTER" layoutX="62.0" layoutY="38.0" prefHeight="17.0" prefWidth="49.0" />
@@ -128,14 +128,14 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Pane layoutX="14.0" layoutY="540.0" prefHeight="72.0" prefWidth="141.0" style="-fx-background-color: white;">
+            <Pane layoutX="14.0" layoutY="540.0" prefHeight="72.0" prefWidth="141.0" style="-fx-background-color: gray;">
                <children>
                   <Label fx:id="itemselect" alignment="CENTER" prefHeight="31.0" prefWidth="141.0" textAlignment="CENTER" />
                   <Label fx:id="itemStats" alignment="CENTER" layoutY="28.0" prefHeight="42.0" prefWidth="141.0" textAlignment="CENTER" />
                </children>
             </Pane>
             <Text fill="#f5efef" layoutX="14.0" layoutY="526.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Select" wrappingWidth="89.13671875" />
-            <TextArea fx:id="events" editable="false" layoutX="210.0" layoutY="582.0" prefHeight="149.0" prefWidth="360.0" style="-fx-background-color: white;" wrapText="true" />
+            <TextArea fx:id="events" editable="false" layoutX="210.0" layoutY="582.0" prefHeight="149.0" prefWidth="360.0" style="-fx-control-inner-background: gray; -fx-background: gray;" wrapText="true" />
             <TextArea fx:id="pinventory" layoutX="14.0" layoutY="154.0" prefHeight="198.0" prefWidth="141.0" style="-fx-background-color: white;" />
             <ListView fx:id="inventoryList" layoutX="14.0" layoutY="154.0" onMouseClicked="#setSelectedItem" prefHeight="198.0" prefWidth="141.0" />
          </children>

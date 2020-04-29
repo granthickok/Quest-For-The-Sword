@@ -260,13 +260,13 @@ public class LevelController implements Initializable{
 			if(runCalc <= 25) {	// Roll for ability to run
 			
 			
-				events.appendText("\nRun Successful! WOOSH");
+				events.appendText("Run Successful! WOOSH\n");
 				
 				combat=false;
 			
 			} else if(runCalc > 20) {		
 		
-				events.appendText("\nRun Failed! Prepare for pain!");	
+				events.appendText("Run Failed! Prepare for pain!\n");	
 				
 				enemyAttack();
 			}
@@ -274,7 +274,7 @@ public class LevelController implements Initializable{
 		}
 		else if(combat == true && currentPos == finishCircle) {	// Inform player they cannot run at boss
 			
-			events.appendText("\nThere is no escaping Morthar!");
+			events.appendText("There is no escaping Morthar!\n");
 			
 			enemyAttack();
 			
@@ -292,7 +292,7 @@ public class LevelController implements Initializable{
 		Item i=randomDrops.get(x);
 		addItem(i.getName());
 		
-		events.appendText("\nYou find an "+i.getName()+" in your adventures!");	// Inform player
+		events.appendText("You find an "+i.getName()+" in your adventures!\n");	// Inform player
 	}
 	
 	/*
@@ -305,7 +305,7 @@ public class LevelController implements Initializable{
 		Item i=combatDrops.get(x);
 		addItem(i.getName());
 		
-		events.appendText("\nYou find an "+i.getName()+" after defeating the "+e.getName()+"!"); // Infrom player
+		events.appendText("You find an "+i.getName()+" after defeating the "+e.getName()+"!\n"); // Infrom player
 	}
 	
 	
@@ -329,7 +329,7 @@ public class LevelController implements Initializable{
 				
 				if(i == null) {	// Check if the item isnt found in the item list
 					
-					events.appendText("\nItem not Found!");
+					events.appendText("Item not Found!\n");
 					itemselect.setText("");
 					itemStats.setText("");
 				} else {	// Check what type of item was used
@@ -337,22 +337,22 @@ public class LevelController implements Initializable{
 						int y=p.getHP()+i.getChange();
 						if(y>p.getMaxHP()) {
 							p.setHP(p.getMaxHP());
-							events.appendText("\nHealth Restored to Full!");
+							events.appendText("Health Restored to Full!\n");
 					}
 					else {
 						p.setHP(y);
-						events.appendText("\nHealth Restored by " + i.getChange());
+						events.appendText("Health Restored by " + i.getChange()+"\n");
 					}
 					currentHp.setText(p.getHP()+"/"+p.getMaxHP());
 					playerHPBar.setProgress((double)p.getHP()/p.getMaxHP());
 				}else if(i.getStat().equals("DMG")) {
 					p.setDMG(p.getDMG()+i.getChange());
 					gdmg.setText(""+p.getDMG());
-					events.appendText("\nDamage Increased by " + i.getChange());
+					events.appendText("Damage Increased by " + i.getChange()+"\n");
 				}else {
 					p.setEV(p.getEV()+i.getChange());
 					gev.setText(""+p.getEV());
-					events.appendText("\nEV Increased by " + i.getChange());
+					events.appendText("EV Increased by " + i.getChange()+"\n");
 				}
 				
 				// Remove the item from the inventory
@@ -585,10 +585,10 @@ public class LevelController implements Initializable{
 		
 		especial.setText(e.getSpecial());
 		
-		events.appendText("\n" + e.getName() + " approaches!");
+		events.appendText(e.getName() + " approaches!\n");
 			
 		
-		events.appendText("\nWhat will you do?");				
+		events.appendText("What will you do?\n");				
 	
 	
 		
@@ -619,9 +619,9 @@ public class LevelController implements Initializable{
 		
 		especial.setText(e.getSpecial());
 		
-		events.appendText("You enter Morthar's lair and engage the beast!");
+		events.appendText("You enter Morthar's lair and engage the beast!\n");
 			
-		events.appendText("\nWhat will you do?");				
+		events.appendText("What will you do?\n");				
 	
 	
 		
@@ -637,7 +637,7 @@ public class LevelController implements Initializable{
 		
 	if(combat == true) {
 		
-	events.appendText("\n" + p.getName() + " attacks!");	
+	events.appendText(p.getName() + " attacks!\n");	
 	
 	int eEV = e.getEV(); 
 	
@@ -645,7 +645,7 @@ public class LevelController implements Initializable{
 	
 	if(roll <= eEV) { // Enemy evades
 		
-		events.appendText("\nAttack Evaded!");
+		events.appendText("Your was attack evaded!\n");
 		
 		}		
 	else if(roll > eEV) { // Enemy is damaged
@@ -672,7 +672,7 @@ public class LevelController implements Initializable{
 		
 		events.clear();
 		
-		events.appendText("The monster lies dead! Onward!");
+		events.appendText("The monster lies dead! Onward!\n");
 		
 		rollCombatDrop();
 		
@@ -706,11 +706,11 @@ public class LevelController implements Initializable{
 		
 		int sroll = rand.nextInt(101);
 		
-		events.appendText("\n" + e.getName() + " attacks!");
+		events.appendText(e.getName() + " attacks!\n");
 		
 		if(roll <= p.getEV()) { // Player evades
 			
-			events.appendText("\nAttack Evaded!");
+			events.appendText("You evaded "+e.getName()+"\'s Attack!\n");
 			
 		}else if(roll > p.getEV()) { // Player is hit and dies if HP is 0 or less
 			
@@ -726,7 +726,7 @@ public class LevelController implements Initializable{
 				
 				p.setHP(p.getHP() - 100);
 				
-				events.appendText("\nYou bleed profusely. - 100 HP");
+				events.appendText("You bleed profusely. - 100 HP\n");
 				
 				newHp = String.valueOf(p.getHP()+"/"+p.getMaxHP());
 			}
@@ -737,7 +737,7 @@ public class LevelController implements Initializable{
 				else
 					p.setEV(0);
 				
-				events.appendText("\nYou feel a bone break restricting movement. - 5 EV");
+				events.appendText("You feel a bone break restricting movement. - 5 EV\n");
 				
 				String newEV = String.valueOf(p.getEV());
 				
@@ -751,7 +751,7 @@ public class LevelController implements Initializable{
 				else
 					p.setDMG(0);
 				
-				events.appendText("\nA crippling fear rattles your resolve. - 40 DMG");
+				events.appendText("A crippling fear rattles your resolve. - 40 DMG\n");
 				
 				String newDMG = String.valueOf(p.getDMG());
 				
@@ -770,7 +770,7 @@ public class LevelController implements Initializable{
 				else
 					p.setEV(0);
 				
-				events.appendText("\nMorthar unleashes a pillar of flame!  - 30 DMG and - 5 EV");
+				events.appendText("Morthar unleashes a pillar of flame!  - 30 DMG and - 5 EV\n");
 				
 				String newDMG = String.valueOf(p.getDMG());
 				
