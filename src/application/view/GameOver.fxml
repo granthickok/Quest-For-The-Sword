@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.SelectController">
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.SelectController">
    <children>
       <AnchorPane layoutX="-5.0" layoutY="-4.0" prefHeight="751.0" prefWidth="1127.0" style="-fx-background-color: black;">
          <children>
@@ -29,7 +29,7 @@
                   <Glow level="1.0" />
                </effect>
             </Text>
-            <Text layoutX="88.0" layoutY="367.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&quot;Pain and death are a part of life. To reject them is to reject life itself.&quot;  - Havelock Ellis" wrappingWidth="974.64453125">
+            <Text layoutX="76.0" layoutY="326.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You succumb to your injuries and the legendary sword is forever lost to the dragon's hoard" wrappingWidth="974.64453125">
                <font>
                   <Font size="32.0" />
                </font>
