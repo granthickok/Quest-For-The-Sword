@@ -350,9 +350,15 @@ public class LevelController implements Initializable{
 					gdmg.setText(""+p.getDMG());
 					events.appendText("Damage Increased by " + i.getChange()+"\n");
 				}else {
-					p.setEV(p.getEV()+i.getChange());
-					gev.setText(""+p.getEV());
-					events.appendText("EV Increased by " + i.getChange()+"\n");
+					if(p.getEV()+i.getChange()>100) {
+						events.appendText("EV Increased by " + (100-p.getEV())+", Max Evasion is 100\n");
+						p.setEV(100);
+						gev.setText(""+p.getEV());
+					}else {
+						p.setEV(p.getEV()+i.getChange());
+						gev.setText(""+p.getEV());
+						events.appendText("EV Increased by " + i.getChange()+"\n");
+					}
 				}
 				
 				// Remove the item from the inventory

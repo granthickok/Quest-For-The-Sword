@@ -16,6 +16,7 @@
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1126.0" style="-fx-background-color: black;">
          <children>
+            <TextArea fx:id="events" editable="false" layoutX="210.0" layoutY="582.0" prefHeight="149.0" prefWidth="360.0" style="-fx-control-inner-background: gray; -fx-background: gray;" wrapText="true" />
             <Pane layoutX="14.0" layoutY="24.0" prefHeight="87.0" prefWidth="141.0" style="-fx-background-color: gray;">
                <children>
                   <Text layoutX="6.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HP : " wrappingWidth="30.13671875" />
@@ -135,7 +136,6 @@
                </children>
             </Pane>
             <Text fill="#f5efef" layoutX="14.0" layoutY="526.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Select" wrappingWidth="89.13671875" />
-            <TextArea fx:id="events" editable="false" layoutX="210.0" layoutY="582.0" prefHeight="149.0" prefWidth="360.0" style="-fx-control-inner-background: gray; -fx-background: gray;" wrapText="true" />
             <TextArea fx:id="pinventory" layoutX="14.0" layoutY="154.0" prefHeight="198.0" prefWidth="141.0" style="-fx-background-color: white;" />
             <ListView fx:id="inventoryList" layoutX="14.0" layoutY="154.0" onMouseClicked="#setSelectedItem" prefHeight="198.0" prefWidth="141.0" />
          </children>

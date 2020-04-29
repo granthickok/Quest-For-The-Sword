@@ -80,7 +80,7 @@
             <Font size="24.0" />
          </font>
       </Text>
-      <Text fill="#f8f8f8" layoutX="202.0" layoutY="599.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Evasion: 1/7" wrappingWidth="135.0">
+      <Text fill="#f8f8f8" layoutX="200.0" layoutY="598.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Evasion: 14%" wrappingWidth="140.99998596310616">
          <font>
             <Font size="24.0" />
          </font>
@@ -115,12 +115,12 @@
             <Font size="24.0" />
          </font>
       </Text>
-      <Text fill="#f8f8f8" layoutX="581.0" layoutY="599.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Evasion: 1/3" wrappingWidth="129.0">
+      <Text fill="#f8f8f8" layoutX="581.0" layoutY="598.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Evasion: 34%" wrappingWidth="140.99998596310616">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
-      <Text fill="#f8f8f8" layoutX="761.0" layoutY="599.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Evasion: 1/5" wrappingWidth="141.0">
+      <Text fill="#f8f8f8" layoutX="761.0" layoutY="599.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Evasion: 20%" wrappingWidth="141.0">
          <font>
             <Font size="24.0" />
          </font>
@@ -135,7 +135,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Text fill="#f8f8f8" layoutX="392.0" layoutY="599.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Evasion: 1/10" wrappingWidth="168.0">
+      <Text fill="#f8f8f8" layoutX="387.0" layoutY="598.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Evasion: 10%" wrappingWidth="140.99998596310616">
          <font>
             <Font size="24.0" />
          </font>
