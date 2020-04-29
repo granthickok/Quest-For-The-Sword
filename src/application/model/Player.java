@@ -59,7 +59,7 @@ public class Player extends Character{
 		setDMG(460);
 		setHP(3000);
 		setMaxHP(getHP());
-		setEV(99);
+		setEV(34);
 
 		}
 			
