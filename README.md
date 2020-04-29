@@ -9,7 +9,7 @@ A short text based game where you gather items to become more powerful and defea
 
 ## Run Method 2 from jar file
 1.Download QuestForTheSword.jar file from github repo
-2.Open console where QuestForTheSword.jar is located
+2.Open console and go to where QuestForTheSword.jar is located
 3.Enter command `java -jar QuestForTheSword.jar`
 4.Enjoy the game
 
