@@ -96,8 +96,6 @@ public class SelectController implements Initializable{
 		playboy.setName(set);
 		
 		inputname.clear();
-		
-		System.out.println(playboy.getName());
 	}
 
 	/* Methods to set Player class */
