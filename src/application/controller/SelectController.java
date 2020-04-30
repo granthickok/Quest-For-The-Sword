@@ -91,11 +91,23 @@ public class SelectController implements Initializable{
 	@FXML	
 	public void setname(ActionEvent event) {
 	
-		String set = inputname.getText();
+		String set = inputname.getText().trim();
 		
-		playboy.setName(set);
-		
-		inputname.clear();
+		if(set.length()>10) {
+			plschoose.setText("Maximum name length exceded, max name length 10!");
+			plschoose.setVisible(true);
+			inputname.clear();
+			return;
+		}else if(set.length()==0) {
+			plschoose.setText("Please enter a name!");
+			plschoose.setVisible(true);
+			inputname.clear();
+		}else {
+			plschoose.setVisible(false);
+			playboy.setName(set);
+			
+			inputname.clear();
+		}
 	}
 
 	/* Methods to set Player class */
@@ -170,7 +182,7 @@ public class SelectController implements Initializable{
 		
 		if(playboy.role == "" || playboy.getName() == "") {
 			
-		plschoose.setText("Please set a name and class to proceed");	
+		plschoose.setText("Please enter a name and class to proceed");	
 		
 		}
 		else {	
